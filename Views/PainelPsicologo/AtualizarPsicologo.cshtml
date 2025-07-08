@@ -1,0 +1,67 @@
+﻿@model GapsiMVC.ViewModels.EditarUsuarioViewModel
+@{
+    ViewData["Title"] = "Editar Meus Dados";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelPsicologo" asp-action="Index" class="back-btn">← Voltar ao Meu Painel</a>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <p>Por favor, corrija os erros indicados no formulário.</p>
+    </div>
+}
+
+<form asp-controller="PainelPsicologo" asp-action="EditarPsicologo" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-section">
+        <h3>Dados Pessoais</h3>
+        <div class="mb-3">
+            <label asp-for="NomeCompleto" class="form-label fw-bold"></label>
+            <input asp-for="NomeCompleto" class="form-control" />
+            <span asp-validation-for="NomeCompleto" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PhoneNumber" class="form-label fw-bold"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-acao-principal mb-5">Salvar Dados Pessoais</button>
+</form>
+<br />
+<br />
+<form asp-controller="PainelPsicologo" asp-action="AlterarSenhaPsicologo" method="post">    
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-section">
+        <h3>Alterar Senha (Opcional)</h3>
+        <p>Preencha os campos abaixo apenas se desejar alterar sua senha.</p>
+        <div class="mb-3">
+            <label asp-for="SenhaAtual" class="form-label fw-bold"></label>
+            <input asp-for="SenhaAtual" type="password" class="form-control" />
+            <span asp-validation-for="SenhaAtual" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="NovaSenha" class="form-label fw-bold"></label>
+            <input asp-for="NovaSenha" type="password" class="form-control" />
+            <span asp-validation-for="NovaSenha" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ConfirmarNovaSenha" class="form-label fw-bold"></label>
+            <input asp-for="ConfirmarNovaSenha" type="password" class="form-control" />
+            <span asp-validation-for="ConfirmarNovaSenha" class="text-danger"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-acao-principal">Alterar Senha</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

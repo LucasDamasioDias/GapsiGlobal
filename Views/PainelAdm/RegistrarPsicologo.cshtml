@@ -1,0 +1,78 @@
+﻿@model GapsiMVC.ViewModels.AdminRegistrarPsicologoViewModel
+@{
+    ViewData["Title"] = "Registrar Novo Psicólogo";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelAdm" asp-action="VisualizarPsicologos" class="back-btn">← Voltar para a Lista</a>
+}
+
+<p class="lead mb-4">
+    Preencha todos os dados abaixo para cadastrar um novo profissional no sistema.
+</p>
+
+<div class="form-section">  
+    <form asp-controller="PainelAdm" asp-action="RegistrarPsicologo" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        <h4>Informações de Perfil</h4>
+        <hr />
+
+        <div class="row g-3 mb-3">
+            <div class="col-md-8">
+                <label asp-for="NomeCompleto" class="form-label fw-bold"></label>
+                <input asp-for="NomeCompleto" class="form-control form-control-lg" />
+            </div>
+            <div class="col-md-4">
+                <label asp-for="CRP" class="form-label fw-bold"></label>
+                <input asp-for="CRP" class="form-control form-control-lg" placeholder="XX/XXXXX" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Biografia" class="form-label fw-bold"></label>
+            <textarea asp-for="Biografia" class="form-control" rows="5" placeholder="Descreva a especialidade, abordagem e um pouco sobre o profissional..."></textarea>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="FotoPerfil" class="form-label fw-bold"></label>
+            <input asp-for="FotoPerfil" type="file" class="form-control" accept="image/png, image/jpeg" />
+        </div>
+
+
+        <h4 class="mt-5">Informações de Acesso</h4>
+        <hr />
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label fw-bold"></label>
+            <input asp-for="Email" type="email" class="form-control form-control-lg" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Telefone" class="form-label fw-bold"></label>
+            <input asp-for="Telefone" type="tel" class="form-control form-control-lg" />
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="Senha" class="form-label fw-bold"></label>
+                <input asp-for="Senha" type="password" class="form-control form-control-lg" />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="ConfirmarSenha" class="form-label fw-bold"></label>
+                <input asp-for="ConfirmarSenha" type="password" class="form-control form-control-lg" />
+            </div>
+        </div>
+
+        <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-acao-principal">Registrar Psicólogo</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

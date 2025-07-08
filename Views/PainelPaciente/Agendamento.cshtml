@@ -1,0 +1,61 @@
+﻿@using System.Globalization
+@model GapsiMVC.ViewModels.AgendarConsultaViewModel
+
+@{
+    ViewData["Title"] = "Agendar Nova Consulta";   
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+
+@section BotaoVoltar {
+    <a asp-controller="PainelPaciente" asp-action="Index" class="back-btn">← Voltar ao Meu Painel</a>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <p>Ocorreram os seguintes erros ao tentar agendar:</p>
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    </div>
+}
+
+@if (Model.HorariosPorGrupo.Any())
+{
+    foreach (var grupoHorario in Model.HorariosPorGrupo)
+    {
+        <div class="grupo-agendamento">
+            <h3>Grupo: @grupoHorario.NomeGrupo</h3>
+            <p class="lead">Horário Fixo: <strong>@grupoHorario.HorarioFormatado</strong></p>
+
+            @if (grupoHorario.ProximasDatasDisponiveis.Any())
+            {
+                <h4 class="mt-4">Próximas Datas Disponíveis:</h4>
+                <ul class="horarios-disponiveis">
+                    @foreach (var dataDisponivel in grupoHorario.ProximasDatasDisponiveis)
+                    {
+                        <li>
+                            <span>@dataDisponivel.ToString("dddd, dd 'de' MMMM 'de' yyyy 'às' HH:mm", new CultureInfo("pt-BR"))</span>
+                            <form asp-controller="Agendamento" asp-action="Agendar" method="post" class="ms-3">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="GrupoId" value="@grupoHorario.GrupoId" />
+                                <input type="hidden" name="NomeGrupo" value="@grupoHorario.NomeGrupo" />
+                                <input type="hidden" name="DataHoraConsulta" value="@dataDisponivel.ToString("o")" />
+                                <button type="submit" class="btn btn-sm btn-agendar">Agendar</button>
+                            </form>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <div class="alert alert-warning">Não há datas disponíveis para agendamento neste grupo nas próximas semanas ou você já possui agendamentos para todas as datas abertas.</div>
+            }
+        </div>
+    }
+}
+else if (TempData["MensagemInfo"] == null)
+{
+    <div class="alert alert-info">
+        Você não parece estar cadastrado em nenhum grupo com horários de consulta definidos ou não há horários disponíveis no momento. Por favor, verifique seus grupos no painel ou entre em contato com o suporte.
+    </div>
+}

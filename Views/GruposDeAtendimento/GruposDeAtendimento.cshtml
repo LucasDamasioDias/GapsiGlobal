@@ -1,0 +1,39 @@
+﻿@model (List<GapsiMVC.ViewModels.GrupoAtendimentoViewModel> ComAgenda, List<GapsiMVC.ViewModels.GrupoAtendimentoViewModel> SemAgenda)
+@using System.Web 
+
+@{
+    ViewData["Title"] = "Gapsiglobal - Grupos de Atendimento";
+}
+
+<section id="introducao">
+    <p>Na Gapsi Global, oferecemos um espaço acolhedor e seguro para grupos de apoio direcionados, com o objetivo de facilitar o crescimento pessoal, o fortalecimento emocional e o suporte coletivo. Cada grupo é mediado por profissionais capacitados e com experiência em proporcionar um ambiente de escuta ativa, troca de experiências e construção de caminhos saudáveis para lidar com desafios específicos. Conheça mais sobre os grupos ofertados:</p>
+</section>
+
+
+@foreach (var grupo in Model.ComAgenda)
+{
+    <div class="grupo-card">
+        <div class="imagem-container">           
+            <img src="@grupo.ImagemUrl" alt="Imagem do @grupo.Nome" onerror="this.onerror=null; this.src='/assets/icons/image-error.png';" />
+        </div>
+        <div class="conteudo-grupo">
+            <h3>@grupo.Nome</h3>
+            <div>@Html.Raw(grupo.Descricao)</div>
+            <p class="info-agenda horario-disponivel">@grupo.HorarioFormatado</p>
+        </div>
+    </div>
+}
+
+@foreach (var grupo in Model.SemAgenda)
+{
+    <div class="grupo-card">
+        <div class="imagem-container">            
+            <img src="@grupo.ImagemUrl" alt="Imagem do @grupo.Nome" onerror="this.onerror=null; this.src='/assets/icons/image-error.png';" />
+        </div>
+        <div class="conteudo-grupo">
+            <h3>@grupo.Nome</h3>
+            <div>@Html.Raw(grupo.Descricao)</div>
+            <p class="info-agenda agenda-fechada">Agenda ainda não aberta!</p>
+        </div>
+    </div>
+}

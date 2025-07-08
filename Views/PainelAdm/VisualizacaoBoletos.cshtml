@@ -1,0 +1,117 @@
+﻿@model GapsiMVC.ViewModels.VisualizacaoBoletosViewModel
+@using System.Web
+@{
+    ViewData["Title"] = "Visualização de Comprovantes";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelAdm" asp-action="Index" class="back-btn">← Voltar ao Painel Principal</a>
+}
+
+<p class="lead mb-4">
+    Filtre as informações para encontrar os comprovantes de pagamento enviados pelos pacientes.
+</p>
+
+<div class="form-section mb-5">
+    <form asp-action="VisualizacaoBoletos" method="post">
+        @Html.AntiForgeryToken()
+        <div class="row g-3 align-items-center">
+            <div class="col-md">
+                <label asp-for="GrupoIdSelecionado" class="form-label fw-bold"></label>
+                <select asp-for="GrupoIdSelecionado" asp-items="Model.Grupos" class="form-select" id="grupo-dropdown">
+                    <option value="">-- Selecione um Grupo --</option>
+                </select>
+            </div>
+            <div class="col-md">
+                <label asp-for="PacienteIdSelecionado" class="form-label fw-bold"></label>
+                <select asp-for="PacienteIdSelecionado" asp-items="Model.Pacientes" class="form-select" id="paciente-dropdown">
+                    <option value="">-- Selecione um Paciente --</option>
+                </select>
+            </div>
+            <div class="col-md">
+                <label asp-for="DataSelecionada" class="form-label fw-bold"></label>
+                <input asp-for="DataSelecionada" type="date" class="form-control" />
+            </div>
+            <div class="col-md-auto">
+                <label class="form-label" style="visibility: hidden;">Ação</label>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<h4>Resultados da Busca</h4>
+@if (Model.Resultados.Any())
+{
+    <div class="resultados-grid">
+        @foreach (var item in Model.Resultados)
+        {
+            <div class="comprovante-card">
+                <div class="thumbnail-container">
+                    @if (item.UrlComprovante != null && item.UrlComprovante.ToLower().Contains(".pdf"))
+                    {
+                        <a href="@item.UrlComprovante" target="_blank" class="pdf-placeholder">
+                            <span class="pdf-icon">📄</span>
+                            <p>Documento PDF</p>
+                            <small>(Clique para abrir)</small>
+                        </a>
+                    }
+                    else if (!string.IsNullOrEmpty(item.UrlComprovante))
+                    {
+                        <img src="@item.UrlComprovante"
+                             alt="Comprovante de @item.NomePaciente"
+                             onerror="this.onerror=null; this.src='/assets/icons/image-error.png';" />
+                    }
+                    else
+                    {                   
+                        <img src="/assets/icons/image-error.png" alt="URL do comprovante ausente" />
+                    }
+                </div>
+                <div class="info">
+                    <h5>@item.NomePaciente</h5>
+                    <p><strong>Data Consulta:</strong> @item.DataConsulta.ToString("dd/MM/yyyy")</p>
+                    <a href="@item.UrlComprovante" target="_blank" class="link-ver">
+                        Abrir Comprovante
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-info mt-3">Nenhum comprovante encontrado com os filtros selecionados.</div>
+}
+
+@section Scripts {
+    <script>
+        $(function() {
+            $('#grupo-dropdown').on('change', function () {
+                const grupoId = $(this).val();
+                const pacienteDropdown = $('#paciente-dropdown');
+                pacienteDropdown.find('option:not(:first)').remove();
+
+                if (grupoId) {
+                    $.ajax({
+                        url: '@Url.Action("GetPacientesPorGrupo", "PainelAdm")',
+                        type: 'GET',
+                        data: { grupoId: grupoId },
+                        success: function (pacientes) {
+                            if (pacientes && pacientes.length > 0) {
+                                $.each(pacientes, function (i, paciente) {
+                                    pacienteDropdown.append($('<option>', {
+                                        value: paciente.id,
+                                        text: paciente.text
+                                    }));
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,16 @@
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\compulsaoalimentar.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\dependenciajogos.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\familiadetento.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\paisatipicos.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\paisdeluto.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\paissolos.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\pessoahipocondriaca.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\pessoasatipicas.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\prevencaosuicidio.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\profissionaissaude.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\reintegracaosocial.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\sindromepanico.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\transtornoalimentar.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\tv.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\violenciadomestica.jpeg
+C:\Users\Damasio\Desktop\GapsiMVC\wwwroot\assets\img\violenciasexual.jpeg

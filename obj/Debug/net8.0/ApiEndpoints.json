@@ -1,0 +1,34 @@
+[
+  {
+    "ContainingType": "ConsultasController",
+    "Method": "AgendarConsulta",
+    "RelativePath": "api/Consultas/agendar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "AgendarConsultaRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ConsultasController",
+    "Method": "CancelarConsulta",
+    "RelativePath": "api/Consultas/cancelar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "CancelarConsultaRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

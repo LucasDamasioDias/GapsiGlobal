@@ -1,0 +1,68 @@
+﻿@model List<GapsiMVC.ViewModels.PacienteViewModel>
+@{
+    ViewData["Title"] = "Visualizar Pacientes";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelAdm" asp-action="Index" class="back-btn">← Voltar ao Painel Principal</a>
+}
+
+<p class="lead mb-4">
+    Visualize e gerencie os pacientes cadastrados no sistema. Use a busca para encontrar um paciente específico.
+</p>
+
+<div class="filtro-container-simples">
+    <form asp-controller="PainelAdm" asp-action="VisualizarPacientes" method="get" class="d-flex w-100 gap-2">
+        <input type="text" name="searchString" placeholder="Buscar por nome ou e-mail..." value="@Context.Request.Query["searchString"]" class="form-control form-control-lg flex-grow-1" />
+        <button type="submit" class="btn btn-filtrar">Pesquisar</button>
+    </form>
+</div>
+
+<div class="tabela-responsiva mt-4">
+    <table class="tabela-padrao">
+        <thead class="header-verde-padrao">
+            <tr>
+                <th>Nome Completo</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Créditos</th>
+                <th>Grupos</th>
+                <th style="width: 120px;">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var paciente in Model)
+                {
+                    <tr>
+                        <td>@paciente.NomeCompleto</td>
+                        <td>@paciente.Email</td>
+                        <td>@paciente.Telefone</td>
+                        <td>@paciente.Creditos</td>
+                        <td>
+                            @if (paciente.Grupos != null && paciente.Grupos.Any())
+                            {                                
+                                @string.Join(", ", paciente.Grupos)
+                            }
+                            else
+                            {
+                                <span>Nenhum</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <a asp-controller="PainelAdm" asp-action="EditarPaciente" asp-route-id="@paciente.Id" class="btn-acao-tabela btn-editar">Editar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center p-4">Nenhum paciente encontrado.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

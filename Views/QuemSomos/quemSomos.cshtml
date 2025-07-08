@@ -1,0 +1,93 @@
+﻿@model GapsiMVC.ViewModels.QuemSomosViewModel
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Gapsiglobal - Quem Somos";
+}
+
+   
+        <section id="introducao">
+            <img src="~/assets/img/tv.jpg" id="tv" alt="Gapsi">
+            <p>Na Gapsi Global, acreditamos no poder do grupo como um ambiente transformador para o cuidado emocional e psicológico. A psicoterapia em grupo é uma modalidade de tratamento que reúne pessoas com experiências e desafios semelhantes, promovendo trocas e apoio mútuo.</p>
+        </section>
+
+        <section id="quem-somos">
+            <h2>Quem Somos</h2>
+            <p>A Gapsi Global é uma empresa da região metropolitana de Belo Horizonte, especializada em atendimento psicológico em grupo. Nossa missão é facilitar o crescimento pessoal e o bem-estar coletivo, oferecendo um ambiente seguro para o compartilhamento de experiências e desenvolvimento emocional.</p>
+            <p>Contamos com uma equipe multidisciplinar que assegura ética, sigilo absoluto e suporte completo. Nossos valores incluem empatia, comunidade, confidencialidade, inclusão, desenvolvimento pessoal e ética. Aqui, nós escutamos você!</p>
+        </section>
+
+        <section id="psicoterapia-grupo">
+            <h2>O que é a Psicoterapia em Grupo?</h2>
+            <p>A psicoterapia em grupo é conduzida por psicólogos especializados e oferece um espaço seguro para que os participantes compartilhem suas histórias, sentimentos e pensamentos. O objetivo principal é ajudar cada um a entender suas questões, refletir sobre elas e encontrar novas formas de lidar com os desafios da vida.</p>
+            <p>Dentro do grupo, o indivíduo se vê refletido nas experiências dos outros, o que favorece a empatia e a troca de aprendizados.</p>
+        </section>
+
+        <section id="beneficios">
+            <h2>Por que optar por psicoterapia em grupo?</h2>
+            <ul class="beneficios">
+                <li><strong>Sentimento de pertencimento:</strong> O participante percebe que não está sozinho ao ver que outros enfrentam desafios semelhantes, o que promove aceitação e autoconhecimento.</li>
+                <li><strong>Troca de experiências:</strong> O grupo oferece oportunidades de aprendizado com as vivências dos outros.</li>
+                <li><strong>Apoio mútuo:</strong> O acolhimento de pessoas com realidades semelhantes fortalece o indivíduo.</li>
+                <li><strong>Espaço seguro e confidencial:</strong> Todos os encontros são conduzidos por profissionais qualificados, garantindo confidencialidade e respeito.</li>
+            </ul>
+        </section>
+
+        <section id="beneficiados">
+            <h2>Quem pode se beneficiar?</h2>
+            <p>A psicoterapia em grupo é indicada para pessoas que enfrentam questões emocionais, como ansiedade, depressão, problemas de relacionamento, baixa autoestima e dificuldades de adaptação. Também é eficaz para aqueles que buscam autoconhecimento e crescimento pessoal.</p>
+        </section>
+
+<section id="equipe">
+    <h2>Nossa Equipe</h2>
+    @if (Model.SociaBruna != null)
+    {
+        <div class="equipe">
+            <div><img src="@Model.SociaBruna.FotoUrl" alt="Foto de @Model.SociaBruna.NomeCompleto"></div>
+            <div class="profissional">
+                <h3>@Model.SociaBruna.NomeCompleto</h3>
+                <p><strong>Psicóloga Clínica - CRP @Model.SociaBruna.CRP</strong></p>
+                <p>@Model.SociaBruna.Biografia</p>
+            </div>
+        </div>
+    }
+
+    @if (Model.SociaGloria != null)
+    {
+        <div class="equipe" style="margin-top: 2rem;">
+            <div><img src="@Model.SociaGloria.FotoUrl" alt="Foto de @Model.SociaGloria.NomeCompleto"></div>
+            <div class="profissional">
+                <h3>@Model.SociaGloria.NomeCompleto</h3>
+                <p><strong>Psicóloga Clínica - CRP @Model.SociaGloria.CRP</strong></p>
+                <p>@Model.SociaGloria.Biografia</p>
+            </div>
+        </div>
+    }
+</section>
+
+@if (Model.PsicologosParceiros.Any())
+{
+    <section id="parceiros">
+        <h2>Nosso(s) Parceiro(s)</h2>
+
+        @foreach (var psicologo in Model.PsicologosParceiros)
+        {
+            <div class="equipe" style="margin-top: 2rem;">
+                <div>
+                    @if (!string.IsNullOrEmpty(psicologo.FotoUrl))
+                    {
+                        <img src="@psicologo.FotoUrl" alt="Foto de @psicologo.NomeCompleto">
+                    }
+                    else
+                    {
+                        <img src="~/assets/img/placeholder-perfil.png" alt="Foto não disponível">
+                    }
+                </div>
+                <div class="profissional">
+                    <h3>@psicologo.NomeCompleto</h3>
+                    <p><strong>Psicólogo(a) - CRP @psicologo.CRP</strong></p>
+                    <p>@psicologo.Biografia</p>
+                </div>
+            </div>
+        }
+    </section>
+}

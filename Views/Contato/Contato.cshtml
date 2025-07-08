@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Gapsiglobal - Contato";
+}
+        <section class="contato">
+            <h1>Fale Conosco</h1>
+            <p>Estamos prontos para te ouvir! Preencha o formulário abaixo ou entre em contato diretamente através do e-mail ou telefone.</p>
+
+
+            <form asp-controller="Contato" asp-action="EnviarMensagem" method="POST" class="form-contato">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="assunto">Assunto:</label>
+                <input type="text" id="assunto" name="assunto" required>
+
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" maxlength="500"></textarea>
+                <div id="contador">500 caracteres restantes</div>
+
+                <button type="submit">Enviar</button>
+            </form>
+
+            @if (TempData["MensagemSucesso"] != null)
+            {
+                <div class="alert alert-success">@TempData["MensagemSucesso"]</div>
+            }
+
+
+
+            <div class="informacoes-contato">
+                <h2>Outras formas de contato:</h2>
+                <p>E-mail: <a href="mailto:gapsiglobal@gmail.com">gapsiglobal@gmail.com</a></p>
+                <p>Telefone: <a href="tel:+553191336128">(31) 9133-6128</a></p>
+                <div class="icone-links">
+                    <a href="https://wa.me/5531991336128?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20a%20respeito%20da%20psicoterapia%20em%20grupo." target="_blank">
+                        <img src="~/assets/icons/whatsapp.png" alt="Whatsapp" id="whatsapp">
+                    </a>
+                    <a href="https://www.instagram.com/gapsiglobal/" target="_blank">
+                        <img src="~/assets/icons/instagram.png" alt="Instagram" id="instagram">
+                    </a>
+                    <a href="https://youtube.com/@@gapsiglobal?si=sTuezlIJZFrZYMKa" target="_blank">
+                        <img src="~/assets/icons/youtube.png" alt="Youtube" id="youtube">
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+    <script src="~/js/script_contato.js"></script>
+

@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/ico" href="~/assets/icons/logo.ico">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VN2799T4Q9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-VN2799T4Q9');
+    </script>
+
+</head>
+<body class="@Context.Items["BodyClass"]">
+    <div id="appRoot">
+
+        <header>
+            <nav>
+                <button id="menu-toggle" aria-label="Abrir Menu">☰</button>
+                <div class="menu-overlay">
+                    <img src="~/assets/img/logo.png" id="logo-mobile" alt="Logo Gapsi Global">
+                    <ul class="menu">
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-controller="QuemSomos" asp-action="Index">Quem Somos</a></li>
+                        <li><a asp-controller="GruposDeAtendimento" asp-action="GruposDeAtendimento">Grupos de Atendimento</a></li>
+                        <li id="logo-item">
+                            <a asp-controller="Home" asp-action="Index">
+                                <img src="~/assets/img/logo.png" id="logo" alt="Logo Gapsi Global">
+                            </a>
+                        </li>
+                        <li><a asp-controller="Investimento" asp-action="Index">Investimento</a></li>
+                        <li><a asp-controller="Cadastro" asp-action="Index">Registre-se</a></li>
+                        <li><a asp-controller="Login" asp-action="Index">Login</a></li>
+                        <li><a asp-controller="Contato" asp-action="Index">Contato</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            @RenderBody()
+        </main>
+
+        <footer>
+            <p>© @DateTime.Now.Year Gapsi Global. Todos os direitos reservados.</p>
+        </footer>
+        <div id="accessibility-widget">
+            <button id="accessibility-toggle-btn" aria-label="Abrir painel de acessibilidade" aria-expanded="false">
+                <img src="~/assets/icons/acessibilidade.png" alt="Ícone de Acessibilidade">
+            </button>
+            <div id="accessibility-panel" role="region">
+                <h4>Opções de Acessibilidade</h4>
+                <ul>
+                    <li><button id="btn-aumentar-fonte">A+ Aumentar Fonte</button></li>
+                    <li><button id="btn-diminuir-fonte">A- Diminuir Fonte</button></li>
+                    <li><button id="btn-alto-contraste">Alto Contraste</button></li>
+                </ul>
+            </div>
+        </div>
+
+        <script src="~/js/menu_script.js" asp-append-version="true"></script>
+        <script src="~/js/acessibilidade_script.js" asp-append-version="true"></script>
+
+        @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

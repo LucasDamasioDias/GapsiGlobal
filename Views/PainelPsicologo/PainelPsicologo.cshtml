@@ -1,0 +1,34 @@
+﻿@model GapsiMVC.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Painel do Psicólogo";   
+    Layout = "~/Views/Shared/_Layout_Painel.cshtml";
+}
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success">@TempData["MensagemSucesso"]</div>
+}
+
+<div class="text-center">
+    <h1 class="display-5 bem-vindo-header">Bem-vindo(a), @Model.NomeCompleto!</h1>
+    <p class="lead">Sua área para gerenciamento de grupos, consultas e comunicação.</p>
+</div>
+
+<div class="list-group mt-5 col-md-8 mx-auto">
+    <h4 class="painel-section-header">Minhas Ações</h4>
+    <a asp-controller="PainelPsicologo" asp-action="EditarPsicologo" class="list-group-item list-group-item-action fs-5 text-center p-3">
+        Editar Meus Dados e Perfil
+    </a>
+    <a asp-controller="PainelPsicologo" asp-action="PsicologoEnviarMensagens" class="list-group-item list-group-item-action fs-5 text-center p-3">
+        Enviar Mensagens para Grupos
+    </a>
+    <a asp-controller="PainelPsicologo" asp-action="PsicologoEnviarLinks" class="list-group-item list-group-item-action fs-5 text-center p-3">
+        Enviar Links de Consulta
+    </a>
+    <a asp-controller="PainelPsicologo" asp-action="VisualizarMensagensPsicologo" class="list-group-item list-group-item-action fs-5 text-center p-3">
+        Visualizar Mensagens
+    </a>
+    <a href="http://webmail.mco2.com.br/webmail/" target="_blank" class="list-group-item list-group-item-action fs-5 text-center p-3">
+        Acessar Gapsimail
+    </a>
+</div>

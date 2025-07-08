@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GapsiMVC", "GapsiMVC.csproj", "{B8F61C7D-DAF4-4B96-A155-D2C6A87F9F71}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8F61C7D-DAF4-4B96-A155-D2C6A87F9F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8F61C7D-DAF4-4B96-A155-D2C6A87F9F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8F61C7D-DAF4-4B96-A155-D2C6A87F9F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8F61C7D-DAF4-4B96-A155-D2C6A87F9F71}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FCAB0236-2F0D-438A-A3ED-7E9B24E99A22}
+	EndGlobalSection
+EndGlobal

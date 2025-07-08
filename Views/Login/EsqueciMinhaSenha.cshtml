@@ -1,0 +1,25 @@
+﻿@model GapsiMVC.ViewModels.EsqueciMinhaSenhaViewModel
+@{
+    ViewData["Title"] = "Esqueci Minha Senha";    
+}
+
+    <div class="auth-container">
+        <h2>@ViewData["Title"]</h2>
+        <p>Digite seu endereço de e-mail e enviaremos um link para redefinir sua senha.</p>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <form asp-controller="RecuperacaoSenha" asp-action="EsqueciMinhaSenha" method="post">
+            @Html.AntiForgeryToken() 
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar Link de Redefinição</button>
+        </form>
+
+        <p class="mt-3">
+            <a asp-controller="Login" asp-action="Index">Voltar para o Login</a>
+        </p>
+    </div>

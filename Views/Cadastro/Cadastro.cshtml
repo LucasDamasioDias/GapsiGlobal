@@ -1,0 +1,138 @@
+﻿@model Cadastro
+
+@{
+    ViewData["Title"] = "Gapsiglobal - Registre-se";
+}
+   
+        <section id="cadastro-info">
+            <p>Para participar das sessões em grupo da Gapsi Global, é necessário realizar um cadastro simples e rápido.</p>
+            <h3>Como se Cadastrar</h3>
+            <ol>
+                <li><strong>Preenchimento de Dados:</strong> No formulário de cadastro, insira seus dados.</li>
+                <li><strong>Criação de Login:</strong> Você receberá um login exclusivo.</li>
+                <li><strong>Acesso ao Portal:</strong> Com seu login, você poderá participar das reuniões de grupo e realizar pagamentos.</li>
+            </ol>
+        </section>
+
+        <form asp-controller="Cadastro" asp-action="ValidarCadastro" method="POST" id="form-cadastro">
+            <label for="nome">Nome Completo:</label>
+            <input asp-for="Nome" type="text" id="nome">
+            <span asp-validation-for="Nome" class="text-danger"></span>
+
+            <label for="email">E-mail:</label>
+            <input asp-for="Email" type="email" id="email">
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+            <label for="telefone">Telefone:</label>
+            <input asp-for="Telefone" type="tel" id="telefone">
+            <span asp-validation-for="Telefone" class="text-danger"></span>
+
+            <label for="senha">Crie uma Senha:</label>
+            <input asp-for="Senha" type="password" id="senha">
+            <span asp-validation-for="Senha" class="text-danger"></span>
+
+            <label for="confirmar-senha">Confirme sua Senha:</label>
+            <input asp-for="ConfirmarSenha" type="password" id="confirmar-senha">
+            <span asp-validation-for="ConfirmarSenha" class="text-danger"></span>
+
+            <fieldset>
+                <legend>Selecione os grupos que deseja participar:</legend>
+                <div class="grupos-cadastro-container">
+               
+                    @foreach (var grupo in Model.GruposDisponiveis)
+                    {
+                        <div class="grupo-cadastro-item">
+                            <input type="checkbox" id="@grupo.Replace(" ", "")" name="GruposSelecionados" value="@grupo">
+                            <label for="@grupo.Replace(" ", "")">@grupo</label>                            
+                        </div>
+                    }
+                </div>
+            </fieldset>
+            <span asp-validation-for="GruposSelecionados" class="text-danger"></span>
+            <input type="submit" value="Cadastrar" id="botaoRegistro">
+        </form>
+
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+        
+
+        <script type="module">
+            import { enviarDadosParaServidor } from "/js/cadastroService";
+            import { enviarCadastro } from "/js/contratoService.js";
+
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("botaoRegistro").addEventListener("click", async function (event) {
+                    event.preventDefault();
+
+                    let isValid = true;
+
+                    const nome = document.getElementById("nome");
+                    const email = document.getElementById("email");
+                    const telefone = document.getElementById("telefone");
+                    const senha = document.getElementById("senha");
+                    const confirmarSenha = document.getElementById("confirmarSenha"); 
+                    const gruposSelecionados = Array.from(document.querySelectorAll("input[name='GruposSelecionados']:checked"));
+                    const gruposContainer = document.querySelector(".grupos-cadastro-container");
+
+                    document.querySelectorAll(".erro-msg, .erro-msg-grupos").forEach(el => el.remove());
+
+                    function exibirErro(campo, mensagem, isTabela = false) {
+                        const erro = document.createElement("span");
+                        erro.classList.add(isTabela ? "erro-msg-grupos" : "erro-msg");
+                        erro.innerText = mensagem;
+
+                        if (isTabela) {
+                            gruposContainer.insertAdjacentElement("afterend", erro);
+                        } else {
+                            campo.insertAdjacentElement("afterend", erro);
+                        }
+
+                        isValid = false;
+                    }
+
+                    const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+                    if (!nome.value.trim()) exibirErro(nome, "O nome é obrigatório.");
+                    if (!email.value.trim()) exibirErro(email, "O e-mail é obrigatório.");
+                    if (!telefone.value.trim()) exibirErro(telefone, "O telefone é obrigatório.");
+                    if (!senha.value.trim()) {
+                        exibirErro(senha, "A senha é obrigatória.");
+                    } else if (!senhaRegex.test(senha.value)) {
+                        exibirErro(senha, "A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma minúscula, um número e um caractere especial.");
+                    }
+                    if (!confirmarSenha.value.trim()) {
+                        exibirErro(confirmarSenha, "Confirme sua senha.");
+                    } else if (senha.value !== confirmarSenha.value) {
+                        exibirErro(confirmarSenha, "As senhas não coincidem.");
+                    }
+                    if (gruposSelecionados.length === 0) exibirErro(gruposContainer, "Selecione pelo menos um grupo.", true);
+
+                    if (isValid) {
+                        const dadosCadastro = {
+                            nome: nome.value.trim(),
+                            email: email.value.trim(),
+                            telefone: telefone.value.trim(),
+                            senha: senha.value.trim(),
+                            gruposSelecionados: gruposSelecionados.map(el => el.value)
+                        };
+
+                        try {
+                            let idCadastroTemp = await enviarDadosParaServidor(dadosCadastro);
+
+                            if (idCadastroTemp) {
+                                sessionStorage.setItem("IdCadastroTemp", idCadastroTemp);
+                                await enviarCadastro(idCadastroTemp);
+                                window.location.href = "/Contrato/Index";
+                            } else {
+                                alert("Erro ao armazenar os dados temporariamente. Tente novamente.");
+                            }
+                        } catch (error) {
+                            console.error("Erro ao enviar dados:", error);
+                            alert("Ocorreu um erro ao processar seu cadastro.");
+                        }
+                    }
+                });
+            });
+        </script>
+

@@ -1,0 +1,45 @@
+﻿@model GapsiMVC.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Painel Principal";
+    Layout = "~/Views/Shared/_Layout_Painel.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-6 bem-vindo-header">Bem-vindo, @Model.NomeCompleto!</h1>
+    <p class="lead">Selecione uma das opções abaixo para gerenciar o sistema.</p>
+</div>
+
+<div class="mt-5">
+
+    <div class="mb-4">        
+        <h4 class="painel-section-header">Gerenciamento de Usuários</h4>
+        <div class="list-group">
+            <a asp-controller="PainelAdm" asp-action="VisualizarPacientes" class="list-group-item list-group-item-action">Visualizar Pacientes</a>
+            <a asp-controller="PainelAdm" asp-action="VisualizarPsicologos" class="list-group-item list-group-item-action">Visualizar Psicólogos</a>
+            <a asp-controller="PainelAdm" asp-action="RegistrarPsicologo" class="list-group-item list-group-item-action">Registrar Novo Psicólogo</a>
+            <a asp-controller="PainelAdm" asp-action="AlterarDados" class="list-group-item list-group-item-action">Alterar Meus Dados</a>
+        </div>
+    </div>
+   
+    <div class="mb-4">
+        <h4 class="painel-section-header">Gerenciamento de Grupos e Consultas</h4>
+        <div class="list-group">
+            <a asp-controller="PainelAdm" asp-action="GerenciarGrupos" class="list-group-item list-group-item-action">Gerenciar Grupos de Apoio</a>
+            <a asp-controller="PainelAdm" asp-action="GerenciarHorariosGrupos" class="list-group-item list-group-item-action">Gerenciar Horários dos Grupos</a>
+            <a asp-controller="PainelAdm" asp-action="VisualizacaoBoletos" class="list-group-item list-group-item-action">Visualizar Comprovantes de Pagamento</a>
+            <a asp-controller="PainelAdm" asp-action="GerenciarConsultas" class="list-group-item list-group-item-action">Gerenciar Consultas Agendadas</a>
+            <a asp-controller="PainelAdm" asp-action="GerenciarValorConsulta" class="list-group-item list-group-item-action">Alterar Valor da Consulta</a>
+        </div>
+    </div>
+   
+    <div class="mb-4">
+        <h4 class="painel-section-header">Comunicação</h4>
+        <div class="list-group">
+            <a asp-controller="PainelAdm" asp-action="EnviarMensagens" class="list-group-item list-group-item-action">Enviar Mensagens para Grupos</a>
+            <a asp-controller="PainelAdm" asp-action="EnviarMensagensPsicologos" class="list-group-item list-group-item-action">Enviar Mensagem para Psicólogos</a>
+            <a asp-controller="PainelAdm" asp-action="EnviarLinks" class="list-group-item list-group-item-action">Enviar Links de Consulta</a>
+            <a href="http://webmail.mco2.com.br/webmail/" target="_blank" class="list-group-item list-group-item-action">Acessar Gapsimail</a>
+        </div>
+    </div>
+
+</div>

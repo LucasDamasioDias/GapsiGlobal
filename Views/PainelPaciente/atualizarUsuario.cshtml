@@ -1,0 +1,92 @@
+﻿@model GapsiMVC.ViewModels.EditarUsuarioViewModel
+@{
+    ViewData["Title"] = "Atualizar Meus Dados";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelPaciente" asp-action="Index" class="back-btn">← Voltar ao Meu Painel</a>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <p>Por favor, corrija os erros indicados no formulário.</p>
+    </div>
+}
+
+<form asp-controller="PainelPaciente" asp-action="EditarPerfilEGrupos" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-section">
+        <h3>Dados Pessoais e Grupos</h3>
+        <div class="mb-3">
+            <label asp-for="NomeCompleto" class="form-label fw-bold"></label>
+            <input asp-for="NomeCompleto" class="form-control" />
+            <span asp-validation-for="NomeCompleto" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PhoneNumber" class="form-label fw-bold"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <hr class="my-4">
+
+        <h5>Meus Grupos de Apoio</h5>
+        <p>Selecione os grupos dos quais deseja participar:</p>
+        @if (Model.TodosOsGrupos != null && Model.TodosOsGrupos.Any())
+        {
+            <ul class="grupos-checkbox-lista">
+                @for (int i = 0; i < Model.TodosOsGrupos.Count; i++)
+                {
+                    <li>
+                        <input type="checkbox"
+                               name="GruposSelecionadosIds"
+                               value="@Model.TodosOsGrupos[i].Id"
+                               id="grupo_@Model.TodosOsGrupos[i].Id"
+                        @(Model.TodosOsGrupos[i].Selecionado ? "checked" : "") />
+                        <label for="grupo_@Model.TodosOsGrupos[i].Id">@Model.TodosOsGrupos[i].Nome</label>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Nenhum grupo disponível no momento.</p>
+        }
+    </div>
+    <button type="submit" class="btn btn-acao-principal mb-5">Salvar Dados e Grupos</button>
+</form>
+<br />
+<br />
+<form asp-controller="PainelPaciente" asp-action="AlterarSenha" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-section">
+        <h3>Alterar Senha (Opcional)</h3>
+        <p>Preencha os campos abaixo apenas se desejar alterar sua senha.</p>
+        <div class="mb-3">
+            <label asp-for="SenhaAtual" class="form-label fw-bold"></label>
+            <input asp-for="SenhaAtual" type="password" class="form-control" />
+            <span asp-validation-for="SenhaAtual" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="NovaSenha" class="form-label fw-bold"></label>
+            <input asp-for="NovaSenha" type="password" class="form-control" />
+            <span asp-validation-for="NovaSenha" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ConfirmarNovaSenha" class="form-label fw-bold"></label>
+            <input asp-for="ConfirmarNovaSenha" type="password" class="form-control" />
+            <span asp-validation-for="ConfirmarNovaSenha" class="text-danger"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-acao-principal">Alterar Senha</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

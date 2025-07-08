@@ -1,0 +1,79 @@
+﻿@model GapsiMVC.ViewModels.AdminGerenciarGruposViewModel
+@using System.Text.Encodings.Web;
+@{
+    ViewData["Title"] = "Gerenciar Grupos de Apoio";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelAdm" asp-action="Index" class="back-btn">← Voltar ao Painel Principal</a>
+}
+
+<div class="form-section mb-5">    
+    <h3>Criar Novo Grupo Principal</h3>
+    <form asp-controller="PainelAdm" asp-action="CriarGrupo" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="NomeNovoGrupo" class="form-label fw-bold"></label>
+            <input asp-for="NomeNovoGrupo" class="form-control form-control-lg" placeholder="Ex: Grupo de Pais Atípicos" />
+            <span asp-validation-for="NomeNovoGrupo" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="DescricaoNovoGrupo" class="form-label fw-bold"></label>
+            <textarea asp-for="DescricaoNovoGrupo" class="form-control" rows="5" placeholder="Descreva o grupo. Você pode usar tags HTML como <ul>, <li> e <strong>."></textarea>
+            <span asp-validation-for="DescricaoNovoGrupo" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ImagemNovoGrupo" class="form-label fw-bold"></label>
+            <input asp-for="ImagemNovoGrupo" type="file" class="form-control" accept="image/png, image/jpeg, image/gif" />
+            <span asp-validation-for="ImagemNovoGrupo" class="text-danger"></span>
+        </div>
+        <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-acao-principal">Criar Grupo</button>
+        </div>
+    </form>
+</div>
+
+
+<section class="lista-grupos-container">
+    <h3>Grupos Existentes</h3>
+    <div class="tabela-responsiva mt-3">
+        <table class="tabela-padrao">
+            <thead class="header-verde-padrao">               
+                <tr>
+                    <th>Nome do Grupo</th>
+                    <th>Nº de Pacientes</th>
+                    <th style="width: 120px;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.GruposExistentes.Any())
+                {
+                    @foreach (var grupo in Model.GruposExistentes)
+                    {
+                        <tr>
+                            <td>@grupo.Nome</td>
+                            <td>@grupo.NumeroDePacientes</td>
+                            <td class="acoes-em-linha">
+                                <a asp-controller="PainelAdm" asp-action="EditarGrupo" asp-route-id="@grupo.Id" class="btn-acao-tabela btn-editar me-2">Editar</a>
+                                <form asp-controller="PainelAdm" asp-action="ExcluirGrupo" asp-route-id="@grupo.Id" method="post" class="d-inline"
+                                      onsubmit='return confirm("Tem certeza que deseja excluir o grupo \"@Html.Raw(JavaScriptEncoder.Default.Encode(grupo.Nome))\"? Esta ação não pode ser desfeita e só é permitida se o grupo não tiver usuários, horários ou consultas ativas associadas.");'>
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-excluir">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" class="text-center">Nenhum grupo cadastrado no momento.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

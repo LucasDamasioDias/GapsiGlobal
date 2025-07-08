@@ -1,0 +1,1005 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #FFFFFF;
+    color: #333333;
+    line-height: 1.6;
+    padding-left: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Manter a proporção do vídeo */
+    position: absolute; /* Permite que o vídeo ocupe toda a área */
+    top: 0; /* Posiciona no topo */
+    left: 0; /* Posiciona à esquerda */
+    z-index: -1; /* Coloca o vídeo atrás de outros conteúdos */
+    margin: 0;
+}
+
+.welcome {
+    font-family: "Qwitcher Grypen", cursive; /* Fonte personalizada */
+    font-weight: 700; /* Peso da fonte */
+    font-style: normal; /* Estilo normal */
+    color: #ffffff; /* Cor da fonte - branco */
+    text-align: center; /* Centraliza o texto horizontalmente */
+    position: relative; /* Posiciona no fluxo do layout */
+    z-index: 1; /* Coloca a mensagem acima do vídeo */
+    margin: 100px 0; /* Adiciona um espaço superior e inferior (opcional) */
+    font-size: 9em; /* Tamanho da fonte - ajuste conforme desejado */
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif; /* Para títulos */
+    color: #2B7A7C; /* Azul escuro */
+}
+
+a {
+    color: #2B7A7C; /* Azul escuro */
+    text-decoration: none; /* Remover sublinhado */
+}
+
+    a:hover {
+        text-decoration: underline; /* Sublinhado ao passar o mouse */
+    }
+
+button, submit {
+    background-color: #A4D7E1; /* Azul claro */
+    color: #333333;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+    button:hover {
+        background-color: #B2E0C6; /* Verde suave ao passar o mouse */
+    }
+
+.menu {
+    list-style: none;
+    padding: 0px;
+    margin: 0;
+    align-items: center;    
+    display: inline-flex; /* Adicione esta linha */   
+    justify-content: center; /* Ou flex-start, center, etc., dependendo do alinhamento desejado dentro do espaço que ele ocupa */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 25px;    
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+    .menu li {
+        margin-top: 0; /* Espaçamento entre os itens */
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+
+    .menu a {
+        text-decoration: none; /* Remove o sublinhado dos links */
+        color: #5d5555; /* Cor do texto */
+        padding: 5px 15px;
+        border-radius: 25px; /* Bordas arredondadas */
+        transition: background-color 0.3s, transform 0.3s; /* Animação suave ao passar o mouse */
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+        .menu a:hover {
+            transform: scale(1.05); /* Aumento sutil de tamanho ao passar o mouse */
+            background-color: rgba(255, 255, 255, 0.2); /* Leve mudança na cor de fundo */
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Sombra ao redor do link */
+        }
+.menu_painel {
+    list-style: none;
+    padding: 0px;
+    margin: 0;
+    align-items: center;
+    display: inline-flex; /* Adicione esta linha */
+    justify-content: space-between; /* Ou flex-start, center, etc., dependendo do alinhamento desejado dentro do espaço que ele ocupa */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%; /* Faz a ul ocupar toda a largura do <nav> */
+}
+
+.menu_painel li {
+    margin-top: 0; /* Espaçamento entre os itens */
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.menu_painel a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: #5d5555; /* Cor do texto */
+    padding: 5px 15px;
+    border-radius: 25px; /* Bordas arredondadas */
+    transition: background-color 0.3s, transform 0.3s; /* Animação suave ao passar o mouse */
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+    .menu a:hover {
+        transform: scale(1.05); /* Aumento sutil de tamanho ao passar o mouse */
+        background-color: rgba(255, 255, 255, 0.2); /* Leve mudança na cor de fundo */
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Sombra ao redor do link */
+    }
+
+
+#menu-toggle {
+    display: none;
+    background-color: #333;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #2B7A7C;
+    position: fixed;
+    top: 5px; /* Distância do topo da tela */
+    right: 5px; /* Distância da direita */
+    padding: 10px 20px;
+    border-radius: 50px; /* Para dar um visual arredondado */
+    z-index: 10;
+}
+
+
+    /* Estilização adicional para o botão (opcional) */
+    #menu-toggle:focus {
+        outline: none;
+    }
+
+    #menu-toggle:hover {
+        color: #555; /* Mudança de cor ao passar o mouse */
+    }
+
+#logo {
+    height: 100px; /* Ajuste conforme o tamanho desejado da logo */
+    transition: transform 0.3s;
+    text-decoration: none;
+}
+
+#logo-mobile {
+    display: none;
+}
+
+#logo-item {
+    margin: 0 10px; /* Espaçamento ao redor da logo */
+}
+
+    #logo-item:hover a {
+        transform: none; /* Aumenta ligeiramente a logo ao passar o mouse */
+        background-color: transparent; /* Remove a cor de fundo */
+        color: inherit; /* Mantém a cor original do texto */
+        box-shadow: none; /* Remove a sombra */
+    }
+
+.grupos {
+    display: grid;
+    grid-template-columns: 200px 1fr; /* 1ª coluna: 200px (imagem), 2ª coluna: flexível (descrição) */
+    gap: 20px; /* Espaço entre as colunas */
+}
+
+    .grupos img {
+        max-width: 100%; /* A imagem ocupará toda a largura da coluna */
+        height: 100%; /* Mantém a proporção da imagem */
+    }
+
+.grupos-apoio {
+    margin-left: 19px; /* Reduz a margem esquerda para 10 pixels */
+    padding-left: 0; /* Remove o padding à esquerda, se houver */
+}
+
+h3 {
+    margin: 0 0 10px;
+}
+
+ul {
+    list-style-type: disc; /* Formato de lista com marcadores */
+    margin-left: 20px; /* Indentação para a lista */
+}
+
+section {
+    margin-bottom: 20px; /* Espaçamento entre seções */
+}
+
+#tv {
+    display: block;
+    margin: 0 auto; /* Centraliza horizontalmente */
+    width: 50%;
+    height: 100vh;
+    padding: 20px;
+}
+
+.beneficios {
+    margin-left: 19px; /* Reduz a margem esquerda para 10 pixels */
+    padding-left: 0; /* Remove o padding à esquerda, se houver */
+}
+
+.equipe {
+    display: grid;
+    grid-template-columns: 200px 1fr; /* Coluna de imagem (200px) e coluna de texto flexível */
+    gap: 20px; /* Espaço entre a imagem e o texto */
+    max-width: 80%;
+    align-items: start; /* Alinha a imagem e o texto ao topo */
+}
+
+    .equipe img {
+        max-width: 100%; /* Garante que a imagem não ultrapasse a coluna */
+        height: auto; /* Mantém a proporção da imagem */
+        display: block; /* Evita qualquer comportamento inesperado */
+    }
+
+.profissional {
+    padding: 10px; /* Espaço interno no texto */
+}
+
+#form-cadastro {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+    #form-cadastro h2 {
+        text-align: center;
+        color: #2B7A7C;
+        margin-bottom: 20px;
+    }
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+    form label {
+        font-weight: bold;
+        color: #333333;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="tel"],
+    form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #CCCCCC;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    form input[type="submit"],
+    form input[type="button"] {
+        background-color: #2B7A7C;
+        color: #FFFFFF;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+        form input[type="submit"]:hover {
+            background-color: #1E6263;
+        }
+
+    .grupos-cadastro-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+    gap: 10px; /* Espaçamento entre os itens */
+    max-width: 600px; /* Ajuste conforme necessário */    
+    }
+
+    .grupo-cadastro-item {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espaçamento entre o checkbox e o texto */
+     }
+
+
+.popup-buttons {
+    margin-top: 20px;
+}
+
+    .popup-buttons button {
+        margin: 5px;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+    }
+
+        .popup-buttons button:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+/* Estilo do formulário de login */
+#login-form {
+    max-width: 400px;
+    margin: 50px auto; /* Centraliza o formulário */
+    padding: 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDD;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+    #login-form h2 {
+        text-align: center;
+        color: #2B7A7C;
+        margin-bottom: 20px;
+        font-family: 'Playfair Display', serif;
+    }
+
+    #login-form form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #login-form label {
+        font-weight: bold;
+        color: #333333;
+    }
+
+    #login-form input[type="email"],
+    #login-form input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #CCCCCC;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    #login-form input[type="submit"],
+    #login-form button[type="submit"] {
+        background-color: #2B7A7C;
+        color: #FFFFFF;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        #login-form input[type="submit"]:hover {
+            background-color: #1E6263;
+        }
+
+    #login-form p {
+        text-align: center;
+        font-size: 14px;
+    }
+
+        #login-form p a {
+            color: #2B7A7C;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            #login-form p a:hover {
+                text-decoration: underline;
+            }
+
+.alert.alert-danger {
+    color: red; /* Define a cor do texto */
+    background-color: #ffe6e6; /* Fundo levemente avermelhado */
+    border: 1px solid red; /* Borda vermelha */
+    padding: 10px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto */
+    font-weight: bold; /* Deixa o texto em negrito */
+    border-radius: 5px; /* Arredonda as bordas */
+    max-width: 400px; /* Define uma largura máxima */
+    margin: 10px auto; /* Centraliza horizontalmente */
+}
+
+.contato {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .contato h1 {
+        text-align: center;
+        color: #2B7A7C;
+        font-family: 'Playfair Display', serif;
+        margin-bottom: 20px;
+    }
+
+.form-contato {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+    .form-contato label {
+        font-weight: bold;
+        color: #333333;
+    }
+
+    .form-contato input,
+    .form-contato textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .form-contato button {
+        background-color: #2B7A7C;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .form-contato button:hover {
+            background-color: #1E6263;
+        }
+
+.informacoes-contato {
+    margin-top: 20px;
+    text-align: center;
+}
+
+    .informacoes-contato h2 {
+        color: #2B7A7C;
+        margin-bottom: 10px;
+    }
+
+    .informacoes-contato a {
+        color: #2B7A7C;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .informacoes-contato a:hover {
+            text-decoration: underline;
+        }
+
+.erro-msg {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-top: 2px; /* Ajuste fino */
+}
+
+.erro-msg-grupos {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-top: 1px; /* Aumentado para alinhar com a tabela */
+}
+
+.text-danger {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-top: 2px; /* Ajuste fino para alinhamento */
+}
+
+.icone-links {
+    display: flex; /* Alinha os ícones horizontalmente */
+    justify-content: center; /* Centraliza os ícones */
+    gap: 20px; /* Espaço entre os ícones */
+    margin-top: 20px; /* Espaço acima da seção */
+}
+
+    .icone-links a img {
+        width: 50px; /* Tamanho aceitável dos ícones */
+        height: 50px;
+        border-radius: 50%; /* Mantém o formato circular */
+        transition: transform 0.3s ease; /* Animação ao passar o mouse */
+    }
+
+        .icone-links a img:hover {
+            transform: scale(1.2); /* Efeito de zoom ao passar o mouse */
+        }
+
+footer {
+    color: #000; /* Cor do texto do footer */
+    margin-top: 30px;
+    padding-top: 0;
+}
+
+#footer {
+    color: #fff; /* Cor do texto do footer */
+    padding: 0; /* Espaçamento vertical no footer */
+}
+
+.popup-body {
+    font-family: 'Times New Roman', serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.popup-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+    .popup-content h2 {
+        font-size: 20px;
+        text-align: center;
+        text-transform: uppercase;
+        border-bottom: 2px solid black;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        color: #000;
+    }
+
+    .popup-content p, .popup-content li {
+        text-align: justify;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .popup-content ul {
+        padding-left: 20px;
+        list-style-type: square;
+    }
+
+    .popup-content li {
+        margin-bottom: 8px;
+    }
+
+    .popup-content section {
+        margin-bottom: 20px;
+    }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+    table th, table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+
+    table th {
+        background-color: #11675e;
+        color: white;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    table tr:hover {
+        background-color: #e1f5f4;
+    }
+
+.back-btn {
+    display: inline-block; /* Permite padding, margin, width, mas fica na linha */
+    background-color: #11675e;
+    color: white !important; /* !important para garantir que sobrescreva a cor padrão do link, se necessário */
+    border-radius: 15px;
+    padding: 8px 8px; /* Ajuste o padding para o tamanho desejado (vertical, horizontal) */
+    text-decoration: none; /* Remove o sublinhado do link */
+    border: none; /* Remove qualquer borda padrão */
+    cursor: pointer; /* Mostra o cursor de "mãozinha" */
+    font-weight: bold; /* Opcional: para texto em negrito */
+    text-align: center; /* Centraliza o texto */
+    /* Remova 'width: 8%' a menos que você tenha um motivo muito específico e o pai seja consistente. */
+    /* Se quiser uma largura mínima: min-width: 100px; (exemplo) */
+    /* Se quiser que ele se ajuste ao conteúdo: width: auto; (que é o padrão com inline-block) */
+    transition: background-color 0.2s ease-in-out; /* Efeito suave no hover */
+    max-width: 15%;
+}
+
+    .back-btn:hover {
+        background-color: #0e554c; /* Um tom um pouco mais escuro de #11675e para o hover */
+        color: white !important; /* Mantém a cor do texto no hover */
+    }
+
+.search-btn, .sv-btn {
+    background-color: #11675e;
+    color: white;
+    border-radius: 5px;
+}
+
+@media (max-width: 1600px) {
+    .menu{
+        width: 100%
+    }
+    video {
+        width: 100%
+    }
+}
+
+    @media (max-width: 1024px) {
+        .container {
+            width: 90%;
+            padding: 10px;
+        }
+
+        .grupo {
+            flex-direction: column;
+            text-align: center;
+        }
+
+            .grupo img {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            .grupo .descricao {
+                width: 100%;
+            }
+
+        .grupos {
+            grid-template-columns: 1fr;
+        }
+
+        body {
+            padding-right: 20px;
+        }
+    }
+
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 20px;
+            font-size: 14px;
+        }
+
+        /* Exibir o botão "hambúrguer" em telas pequenas */
+        #menu-toggle {
+            display: block;
+            background-color: #333;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #2B7A7C;
+            position: fixed;
+            top: 5px; /* Distância do topo da tela */
+            right: 5px; /* Distância da direita */
+            padding: 10px 20px;
+            border-radius: 50px; /* Para dar um visual arredondado */
+            z-index: 10;
+        }
+
+        /* Menu oculto inicialmente */
+        .menu {
+            display: none;
+        }
+
+        .menu-overlay {
+            display: none; /* Inicia oculto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #FFF;
+            z-index: 8; /* Um nível abaixo do menu */
+        }
+
+        /* Exibir o menu quando a classe .menu-mobile é adicionada */
+        .menu.menu-mobile {
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            bottom: 70px; /* Posiciona o menu acima do botão */
+            left: 50%;
+            transform: translateX(-50%); /* Centraliza o menu horizontalmente */
+            width: 90%; /* Ajuste o tamanho do menu, se necessário */
+            padding: 10px 0;
+            z-index: 100; /* Certifique-se de que o menu aparece abaixo do botão */
+            background-color: #93C2B1;
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.3), inset -4px -4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+            .menu.menu-mobile li {
+                margin: 10px 0;
+                width: 90%;
+                text-align: center;
+                background-color: #2B7A7C;
+                border-radius: 25px;
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+
+            .menu.menu-mobile a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 1.2em;
+            }
+
+        /* Ocultar logo em telas pequenas */
+        #logo-item {
+            display: none;
+        }
+
+        #logo-mobile {
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            margin-top: 57px;
+            margin-left: 20px;
+        }
+
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .welcome {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 4em;
+            color: white;
+            z-index: 1; /* Aumenta para garantir que fique acima do vídeo */
+            background: rgba(0, 0, 0, 0.5); /* Adiciona um fundo semi-transparente para destacar o texto */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .menu-open .welcome {
+            opacity: 0; /* Torna invisível */
+            pointer-events: none; /* Impede cliques e interações */
+        }
+
+        main {
+            position: relative;
+            width: 100%;
+            min-height: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .index {
+            height: 100vh; /* Em vez de min-height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+
+        .container {
+            width: 100%;
+            padding: 5px;
+        }
+
+        #tv {
+            width: 100%;
+            max-width: 300px;
+            max-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: -25px;
+            margin-bottom: -25px;
+        }
+
+        .equipe {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .grupo {
+            flex-direction: column;
+            text-align: center;
+        }
+
+            .grupo img {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .grupo .descricao {
+                width: 100%;
+                padding: 10px;
+            }
+
+        nav {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .grupos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+            .grupos img {
+                width: 90%;
+            }
+
+        #form-cadastro {
+            width: 90%;
+        }
+
+        .grupos-cadastro-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #login-form {
+            width: 90%;
+        }
+
+        .contato {
+            width: 90%;
+        }
+
+        /* Ajusta os ícones sociais */
+        .icone-links {
+            flex-wrap: wrap;
+        }
+
+            .icone-links img {
+                width: 35px;
+                height: 35px;
+            }
+
+        main {
+            width: 90%;
+            padding: 15px;
+        }
+
+        .popup-content {
+            padding: 15px;
+            font-size: 14px;
+        }
+
+        h2- {
+            font-size: 18px;
+        }
+
+        p, li {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        ul {
+            padding-left: 15px;
+        }
+    }
+
+    @media (min-width: 1600px) and (max-width: 1600px) and (min-height: 900px) and (max-height: 900px) {
+        body {
+            padding-left: 40px; /* Ajuste o espaçamento lateral conforme necessário */
+        }
+
+        .welcome {
+            font-size: 10em; /* Aumente o tamanho da fonte */
+            margin: 120px 0; /* Ajuste as margens */
+        }
+
+        .menu {
+            padding: 10px; /* Aumente o padding do menu */
+        }
+
+            .menu li {
+                font-size: 20px; /* Aumente o tamanho da fonte no menu */
+            }
+
+            .menu a {
+                padding: 12px 24px; /* Aumente o padding dos links no menu */
+            }
+
+        #logo {
+            height: 120px; /* Aumente o tamanho da logo */
+        }
+
+        .grupos {
+            grid-template-columns: 250px 1fr; /* Ajuste a largura da coluna da imagem */
+            gap: 30px; /* Aumente o espaçamento entre colunas */
+        }
+
+        section {
+            margin-bottom: 30px; /* Aumente o espaçamento entre seções */
+        }
+
+        #tv {
+            width: 60%; /* Ajuste a largura da TV */
+            height: 120vh; /* Ajuste a altura da TV */
+            padding: 30px; /* Aumente o padding da TV */
+        }
+
+        .equipe {
+            grid-template-columns: 250px 1fr; /* Ajuste a largura da coluna da imagem */
+            gap: 30px; /* Aumente o espaçamento entre a imagem e o texto */
+        }
+
+        #form-cadastro {
+            max-width: 700px; /* Aumente a largura do formulário */
+            padding: 30px; /* Aumente o padding do formulário */
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="tel"],
+        form input[type="password"] {
+            padding: 12px; /* Aumente o padding dos campos do formulário */
+            font-size: 16px; /* Aumente o tamanho da fonte dos campos */
+        }
+
+        form input[type="submit"],
+        form input[type="button"] {
+            padding: 12px 20px; /* Aumente o padding dos botões do formulário */
+            font-size: 18px; /* Aumente o tamanho da fonte dos botões */
+        }
+
+        #login-form {
+            max-width: 500px; /* Aumente a largura do formulário de login */
+            padding: 30px; /* Aumente o padding do formulário */
+        }
+
+            #login-form input[type="email"],
+            #login-form input[type="password"] {
+                padding: 10px;
+                font-size: 16px;
+            }
+
+        .contato {
+            max-width: 700px; /* Aumente a largura do formulário de contato */
+            padding: 30px; /* Aumente o padding do formulário */
+        }
+
+        .icone-links a img {
+            width: 60px; /* Aumente o tamanho dos ícones */
+            height: 60px;
+        }
+
+        .popup-content {
+            padding: 40px; /* Aumente o padding do conteúdo do popup */
+        }
+
+            .popup-content h2 {
+                font-size: 24px; /* Aumente o tamanho da fonte do título do popup */
+            }
+
+            .popup-content p, .popup-content li {
+                font-size: 18px; /* Aumente o tamanho da fonte do texto do popup */
+            }
+    }

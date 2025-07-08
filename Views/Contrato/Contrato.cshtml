@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Contrato";
+    Context.Items["BodyClass"] = "popup-body";
+}
+    <div class="popup-content">
+        <h2>CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE ATENDIMENTOS PSICOLÓGICO EM GRUPO</h2>
+        <section>
+            <p>Por este instrumento particular, de um lado, Gapsi – Grupo de Atendimento Psicológico, inscrito sob o CNPJ nº 57.507.780/0001-88, doravante denominado PRESTADORA, e de outro lado, o indivíduo que vier a se inscrever e participar das sessões de atendimento psicológico em grupo, doravante denominado PARTICIPANTE, firmam o presente Contrato de Prestação de Serviços, conforme as cláusulas e condições abaixo:</p>
+        </section>
+
+        <section>
+            <h2>1. DO OBJETO</h2>
+            <p>1.1. O presente contrato tem como objeto a prestação de serviços de atendimento psicológico em grupo, realizados de forma virtual, pela PRESTADORA.</p>
+            <p>1.2. As sessões de atendimento psicológico visam proporcionar aos PARTICIPANTES um espaço de apoio, desenvolvimento pessoal e social, utilizando técnicas e abordagens psicoterapêuticas para o manejo de emoções, pensamentos e comportamentos.</p>
+        </section>
+
+        <section>
+            <h2>2. DOS PARTICIPANTES</h2>
+            <p>2.1. O grupo de atendimento psicológico terá no máximo 6 (seis) PARTICIPANTES.</p>
+            <p>2.2. A participação no grupo é individual, voluntária e de responsabilidade exclusiva do PARTICIPANTE.</p>
+            <p>2.3. Ao inscrever-se no grupo, o PARTICIPANTE declara estar de acordo com as condições deste contrato.</p>
+            <p>2.4. A PRESTADORA reserva-se o direito de selecionar os PARTICIPANTES com base na pertinência e necessidade de acesso ao atendimento psicológico.</p>
+        </section>
+
+        <section>
+            <h2>3. DA PRESTAÇÃO DOS SERVIÇOS</h2>
+            <ul>
+                <li>3.1. As sessões serão realizadas semanalmente, com duração mínima de 1h30.</li>
+                <li>3.2. A PRESTADORA compromete-se a manter sigilo absoluto sobre as informações dos PARTICIPANTES.</li>
+                <li>3.3. A PRESTADORA poderá incluir profissionais de outras áreas para complementar o processo terapêutico.</li>
+                <li>3.4. A PRESTADORA não se responsabiliza por problemas técnicos na plataforma online utilizada.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>4. DAS RESPONSABILIDADES DOS PARTICIPANTES</h2>
+            <ul>
+                <li>4.1. Os PARTICIPANTES devem participar ativamente das sessões e respeitar as normas do grupo.</li>
+                <li>4.2. Manter sigilo sobre as informações compartilhadas durante as sessões.</li>
+                <li>4.3. Garantir um ambiente adequado e privado para participação nas sessões online.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>5. DA REMUNERAÇÃO</h2>
+            <p>5.1. O valor de cada sessão é de R$ 100,00 (cem reais), pagos antecipadamente.</p>
+            <p>5.2. O pagamento deverá ser efetuado antes da sessão. Caso contrário, o link de acesso não será autorizado.</p>
+            <p>5.3. Não haverá reembolso em caso de desistência do PARTICIPANTE.</p>
+        </section>
+
+        <section>
+            <h2>6. DO REAGENDAMENTO E CANCELAMENTO</h2>
+            <p>6.1. O PARTICIPANTE pode solicitar o reagendamento com 24h de antecedência.</p>
+            <p>6.2. A PRESTADORA poderá reagendar sessões com aviso prévio de 24h.</p>
+            <p>6.3. Não haverá reembolso para sessões canceladas fora do prazo estipulado.</p>
+        </section>
+
+        <section>
+            <h2>7. DO SIGILO E CONFIDENCIALIDADE</h2>
+            <p>7.1. A PRESTADORA e os PARTICIPANTES comprometem-se a manter sigilo absoluto sobre todas as informações compartilhadas.</p>
+            <p>7.2. O descumprimento desta cláusula poderá resultar na exclusão do PARTICIPANTE, sem reembolso.</p>
+            <p>7.3. As sessões não serão gravadas, salvo consentimento de todos os PARTICIPANTES.</p>
+        </section>
+
+        <section>
+            <h2>8. DA IMPOSSIBILIDADE DE GARANTIA DE RESULTADOS</h2>
+            <p>8.1. O atendimento psicológico não garante resultados específicos, pois depende do engajamento do PARTICIPANTE.</p>
+        </section>
+
+        <section>
+            <h2>9. DA ADESÃO AO CONTRATO</h2>
+            <p>9.1. A adesão ocorre com a assinatura eletrônica ou física do PARTICIPANTE.</p>
+        </section>
+
+        <section>
+            <h2>10. DO PRAZO DE VALIDADE E VIGÊNCIA</h2>
+            <p>10.1. O contrato entra em vigor na data da assinatura e permanece válido enquanto o PARTICIPANTE estiver ativo nas sessões.</p>
+        </section>
+
+        <section>
+            <h2>11. DA NOTIFICAÇÃO</h2>
+            <p>11.1. Comunicações e notificações serão feitas via e-mail ou site da plataforma.</p>
+        </section>
+
+        <section>
+            <h2>12. DA DURAÇÃO E RESCISÃO</h2>
+            <p>12.1. O contrato pode ser rescindido por qualquer das partes com 30 dias de antecedência.</p>
+        </section>
+
+        <section>
+            <h2>13. DISPOSIÇÕES GERAIS</h2>
+            <p>13.1. Este contrato constitui o acordo integral entre as partes.</p>
+            <p>13.2. Alterações devem ser feitas por escrito e assinadas por ambas as partes.</p>
+            <p>13.3. O foro competente para resolver litígios é a comarca da sede da PRESTADORA.</p>
+        </section>
+        <label>
+            <input type="checkbox" id="checkboxConcordo">
+            Li e concordo com os termos
+        </label>
+        <div class="popup-buttons">
+            <button id="botaoVoltar" onclick="voltarParaCadastro()">Voltar</button>
+            <button id="botaoCadastro" disabled onclick="enviarCadastro()">Efetuar Cadastro</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { habilitarBotaoCadastro, enviarCadastro, voltarParaCadastro } from "/js/contratoService.js";
+
+        document.getElementById("checkboxConcordo").addEventListener("change", habilitarBotaoCadastro);
+        document.getElementById("botaoCadastro").addEventListener("click", enviarCadastro);
+        document.getElementById("botaoVoltar").addEventListener("click", voltarParaCadastro);
+    </script>

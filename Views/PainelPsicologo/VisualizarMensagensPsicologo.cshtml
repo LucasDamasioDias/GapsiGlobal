@@ -1,0 +1,51 @@
+﻿@model GapsiMVC.ViewModels.PsicologoVisualizarMensagensViewModel
+@{
+    ViewData["Title"] = "Mensagens da Administração";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelPsicologo" asp-action="Index" class="back-btn">← Voltar ao Meu Painel</a>
+}
+
+<p class="lead mb-4">
+    Aqui você encontra os comunicados e informações importantes enviados pela administração da Gapsi Global.
+</p>
+
+@if (Model.MensagensRecebidas.Any())
+{
+    @foreach (var msg in Model.MensagensRecebidas)
+    {
+        <div class="mensagem-item">
+            <div class="mensagem-header">                
+                <div class="mensagem-info">
+                    <strong>De:</strong>
+                    <span>@msg.EnviadoPorNome</span>
+                </div>
+                
+                <div class="mensagem-data">
+                    <span>@msg.DataEnvioFormatada</span>
+                </div>
+            </div>
+            <div class="mensagem-conteudo">                
+                @{
+                    string conteudo = msg.Conteudo;
+                    var urlRegex = new System.Text.RegularExpressions.Regex(@"(http[s]?:\/\/[^\s""<>]+)", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    var conteudoHtml = Html.Raw(
+                    urlRegex.Replace(
+                    System.Net.WebUtility.HtmlEncode(conteudo),
+                    "<a href=\"$1\" target=\"_blank\">$1</a>"
+                    ).Replace(Environment.NewLine, "<br />")
+                    );
+                }
+                @conteudoHtml
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="sem-mensagens">
+        <p class="lead">Você não possui novas mensagens da administração no momento.</p>
+    </div>
+}

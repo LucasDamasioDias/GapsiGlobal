@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "gapsiglobal",
+  "private_key_id": "a230bf19dc6eb331a6e431ce7393796f4fc0b4bc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDNqGpt2rr1To1h\ngxq25bRSYYx4gMuCVat2Ttxl5ja1t1ABcGplwNpgSjbZzcran+94V0XzYgryYi2C\n75rtc1hCy2WF0bsKrsXVCpv0TMbn3xvQPBWhndLjLC6KF6fI/MYAAyfTzsC7/9lw\nuUibwOwhaLxhCd2Uiq+2DaoLsRIPPMkJeECKr1BcO13q64YtcxIBP3F+4xsRl87X\nSTwAaIMQRYNTSNK2zLPumBiuL2zTJ5RuvghlbNXQNuzgS1Vc0A1PmWcv2VpkUKPw\njPzvvBiWUiMXz4Dz+Wk2ABeBoAU+sshsKM3slIRQdbeErI92mC/Q1oyXJeKMomaS\nqlFBdsE7AgMBAAECggEAWdBcMn+cuHbGvbgw2YE1n+ikHRg6SEA7sl48WHASoodc\n9FPw02FGvViL3dDG73V7cnXCwcimeTYxJAaaBWsjN4B2ZNu0MLUlBqYsd6N0Fl1U\nWztyQvOW3skzxfEQwHDL08ONCC4586CHiHgSYpr9RJXl9wcE8tMia4JKKfL5rRcY\nelkzfort03nE3P8KslTX54G15a3e4InGWRo2rf383WpOj+PyePlWoLEvucwQVo+o\navlD2gemHaUrrfNVM2fQDdaIK9TWLjX3aAYrA2D5d8OuRpZMzVb3jvgzNR3MTzXP\nENXfyfZ4qHhoYOgBXiAHdF63djXn6xIkTnTMIyD/SQKBgQD7vxR0qptD7wtSvPZ7\neqewZqJGeo5o/bR15TWNmPISRCMHJNrg+z+tGbNscUGoKz1ALnoSihoQdqBHlzfW\nID4ZOHfwT3qV0+y9F9QosXSN+vu1kE0V1nMcePBmSjw5Nnl35mKAQb0LCL6iwiF3\nCMaFSOIUXUHNti++7R0osVFpXQKBgQDRIftFyCzEjdIdWQ10OyOpQ5Zrl7PC88fO\n84VXOrmvvrv9j7/z9eNzqvRJP+QrZ49Rts88iIvvC+cwE21TOSBavYdS88C3/yFr\nvBzGPYKl3zT+Nn5/TBwKTKrHbn8pzlWKdYp6JAl+o25olbXNiSHEib4I92T2FjZp\nENSg5NJzdwKBgQDSu6UX9Ch8uYG1BNEflBEDLSbx8G19ncKOXgxyN3GLsNXRiRxf\n8HHhKP507GmVqHxhWYZ+NnSTC3on84GeEOdqnUZpN17aRMiLkYLbfZCfuVUzK1Qb\nz6QUVXiHZ+T5z4vmvkf+LQleTzelbvQsfIAR2mzFtzr6RGO7Yylhgu0vUQKBgHRR\nRTOb0aKFCt9932jNV9lWGTzAhKAi/PgTJA/PPuYL3P17zZTAJ4D3DaYMHjkyAVm+\npucRP1t2sGBh/cVzGZa+oZy2rHLqOUl1uD9eiOL/Ebdu0c61o0brO3Vu9NVoyNUY\n6StkDc/c0JTk59hotFpfDk5oY0QoOJ0ZWloeyxqjAoGAYCtLe/mR0pvKBLk7vtW/\n5pev0uoL8WaP0bpCgAXNd+nN5ssOxN6DjMCoSOq8L4KVltHD+yn9oaoo6AAaCHP9\nspO/oCv8IP4BG+EHVqM0cDXiRndD5I0ZAn714fUh6A37BPmcv8pcDdHNRhDtiuFk\nhfdupCQVgP5x0a4Pz8cHE0g=\n-----END PRIVATE KEY-----\n",
+  "client_email": "gapsi-drive-uploader@gapsiglobal.iam.gserviceaccount.com",
+  "client_id": "104578589083771991215",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gapsi-drive-uploader%40gapsiglobal.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

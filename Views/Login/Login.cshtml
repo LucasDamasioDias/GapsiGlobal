@@ -1,0 +1,28 @@
+﻿@model GapsiGlobal.Models.LoginModel
+
+@{
+    ViewData["Title"] = "Gapsiglobal - Login";
+}
+        <section id="login-form">
+            <h2>Faça seu Login</h2>             
+
+            <form method="post" asp-controller="Login" asp-action="Login" id="loginForm">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
+
+                <button type="submit" value="Entrar">Entrar</button>
+                @if (!string.IsNullOrEmpty(ViewBag.Mensagem))
+                {
+                    <div class="alert alert-danger">@ViewBag.Mensagem</div>
+                }
+                <p>
+                    Ainda não tem uma conta? <a asp-controller="Cadastro" asp-action="Index">Registre-se aqui</a> ou
+            <a asp-controller="RecuperacaoSenha" asp-action="EsqueciMinhaSenha">clique aqui</a> se esqueceu a senha.
+                </p>
+            </form>
+
+        </section>
+    

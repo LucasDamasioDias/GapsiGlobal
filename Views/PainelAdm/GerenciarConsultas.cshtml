@@ -1,0 +1,105 @@
+﻿@model GapsiMVC.ViewModels.AdminConsultasViewModel
+@{
+    ViewData["Title"] = "Gerenciar Consultas";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelAdm" asp-action="Index" class="back-btn">← Voltar ao Painel Principal</a>
+}
+
+<p class="lead mb-4">
+    Utilize os filtros abaixo para encontrar e gerenciar as consultas agendadas no sistema.
+</p>
+
+<div class="form-section mb-4">   
+    <form asp-controller="PainelAdm" asp-action="GerenciarConsultas" method="get">
+        <div class="row g-3 align-items-center">
+
+            <div class="col-md">                
+                <label for="grupoId" class="form-label">Filtrar por Grupo:</label>
+                <select name="grupoId" asp-items="@ViewBag.GruposParaFiltro" class="form-select">
+                    <option value="">Todos os Grupos</option>
+                </select>
+            </div>
+
+            <div class="col-md">
+                <label for="status" class="form-label">Filtrar por Status:</label>
+                <select name="status" asp-items="@ViewBag.StatusParaFiltro" class="form-select"></select>
+            </div>
+
+            <div class="col-md">
+                <label for="nomePaciente" class="form-label">Buscar Paciente:</label>
+                <input type="text" name="nomePaciente" value="@ViewBag.NomePacientePesquisado" class="form-control" placeholder="Nome ou E-mail" />
+            </div>
+
+            <div class="col-md-auto">
+                <label class="form-label" style="visibility: hidden;">Ação</label>
+                <div class="d-grid">                    
+                    <button type="submit" class="btn btn-filtrar">Filtrar</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div class="tabela-responsiva">
+    <table class="tabela-padrao">
+        <thead>
+            <tr>
+                <th>Data e Hora</th>
+                <th>Grupo</th>
+                <th>Paciente</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ConsultasDoGrupo.Any())
+            {
+                @foreach (var consulta in Model.ConsultasDoGrupo)
+                {
+                    <tr>
+                        <td>@consulta.DataHoraFormatada</td>
+                        <td>@consulta.NomeGrupo</td>
+                        <td>@consulta.NomePaciente</td>
+                        <td>
+                            <span class="consulta-status consulta-status-@consulta.Status.Replace(" ", "")">
+                                @consulta.Status
+                            </span>
+                        </td>
+                        <td>
+                            @if (consulta.Status == "Agendada")
+                            {
+                                <form asp-controller="PainelAdm" asp-action="ConfirmarConsulta" asp-route-id="@consulta.Id" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()                                   
+                                    <input type="hidden" name="grupoId" value="@Model.GrupoSelecionadoId" />
+                                    <input type="hidden" name="status" value="@Model.StatusSelecionado" />
+                                    <input type="hidden" name="nomePaciente" value="@Model.NomePacientePesquisado" />
+                                    <button type="submit" class="btn-acao-tabela btn-confirmar">Confirmar</button>
+                                </form>
+                            }
+                            @if (consulta.Status != "Cancelada" && consulta.Status != "Realizada")
+                            {
+                                <form asp-controller="PainelAdm" asp-action="CancelarConsulta" asp-route-id="@consulta.Id" method="post" class="d-inline" onsubmit="return confirm('Tem certeza que deseja cancelar esta consulta?');">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="grupoId" value="@Model.GrupoSelecionadoId" />
+                                    <input type="hidden" name="status" value="@Model.StatusSelecionado" />
+                                    <input type="hidden" name="nomePaciente" value="@Model.NomePacientePesquisado" />
+                                    <button type="submit" class="btn-acao-tabela btn-cancelar-adm">Cancelar</button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">Nenhuma consulta encontrada para os filtros aplicados.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

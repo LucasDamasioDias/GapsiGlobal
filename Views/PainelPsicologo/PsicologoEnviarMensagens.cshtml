@@ -1,0 +1,52 @@
+﻿@model GapsiMVC.ViewModels.EnviarMensagemViewModel
+@{
+    ViewData["Title"] = "Enviar Mensagem para Grupos";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelPsicologo" asp-action="Index" class="back-btn">← Voltar ao Meu Painel</a>
+}
+
+<p class="lead mb-4">
+    Selecione um ou mais dos seus grupos e digite a mensagem a ser enviada.
+</p>
+
+<div class="form-section">
+    <form asp-controller="PainelPsicologo" asp-action="PsicologoEnviarMensagens" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+      
+        <div class="form-check form-switch">
+            <input asp-for="EnviarParaTodosOsGrupos" class="form-check-input" type="checkbox" role="switch" id="enviarParaTodosGrupos" />
+            <label class="form-check-label" for="enviarParaTodosGrupos">Enviar para TODOS os Meus Grupos</label>
+        </div>
+        
+        <div class="mb-3 mt-3" id="selecaoGruposDiv">
+            <label asp-for="GruposDestinatariosIds" class="form-label fw-bold">Grupos de Destino</label>
+            <select asp-for="GruposDestinatariosIds" asp-items="Model.TodosOsGrupos" class="form-select form-select-multiple" multiple="multiple">
+            </select>
+            <span asp-validation-for="GruposDestinatariosIds" class="text-danger"></span>
+            <small class="form-text-ajuda">Visível apenas se "Enviar para TODOS" não estiver marcado. Segure 'Ctrl' para selecionar múltiplos.</small>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Conteudo" class="form-label fw-bold">Mensagem</label>
+            <textarea asp-for="Conteudo" class="form-control" rows="6" placeholder="Digite sua mensagem aqui..."></textarea>
+            <span asp-validation-for="Conteudo" class="text-danger"></span>
+        </div>
+
+        <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-acao-principal">Enviar Mensagem</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/painel-scripts.js" asp-append-version="true"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setupToggleVisibility('enviarParaTodosGrupos', 'selecaoGruposDiv');
+        });
+    </script>
+}

@@ -1,0 +1,34 @@
+﻿@model GapsiMVC.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Painel Paciente";    
+    Layout = "~/Views/Shared/_Layout_Painel.cshtml";
+}
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success">@TempData["MensagemSucesso"]</div>
+}
+
+<div class="text-center">
+    <h1 class="display-5 bem-vindo-header">Bem-vindo(a), @Model.NomeCompleto!</h1>
+    <p class="lead">Este é o seu espaço para gerenciar suas consultas e informações.</p>
+</div>
+
+<div class="list-group mt-5 col-md-8 mx-auto">
+    <h4 class="painel-section-header">Minhas Atividades</h4>
+    <a asp-controller="Agendamento" asp-action="Index" class="list-group-item list-group-item-action fs-5 text-center p-3">
+        Agendar Nova Consulta
+    </a>
+    <a asp-controller="Agendamento" asp-action="MinhasConsultas" class="list-group-item list-group-item-action fs-5 text-center p-3">
+        Ver Minhas Consultas
+    </a>
+    <a asp-controller="PainelPaciente" asp-action="Pagamentos" class="list-group-item list-group-item-action fs-5 text-center p-3">
+        Realizar Pagamento / Enviar Comprovante
+    </a>
+    <a asp-controller="PainelPaciente" asp-action="VisualizarMensagens" class="list-group-item list-group-item-action fs-5 text-center p-3">
+        Visualizar Mensagens
+    </a>
+    <a asp-controller="PainelPaciente" asp-action="Editar" class="list-group-item list-group-item-action fs-5 text-center p-3">
+        Editar Meus Dados
+    </a>
+</div>

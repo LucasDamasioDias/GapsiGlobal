@@ -1,0 +1,75 @@
+﻿@model List<GapsiMVC.ViewModels.PsicologoViewModel>
+@using System.Text.Encodings.Web;
+@{
+    ViewData["Title"] = "Visualizar Psicólogos";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelAdm" asp-action="Index" class="back-btn">← Voltar ao Painel Principal</a>
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <p class="lead mb-0">
+        Visualize e gerencie os psicólogos cadastrados no sistema.
+    </p>    
+    <a asp-controller="PainelAdm" asp-action="RegistrarPsicologo" class="btn btn-primary">Registrar Novo Psicólogo</a>
+</div>
+
+<div class="filtro-container-simples">
+    <form asp-controller="PainelAdm" asp-action="VisualizarPsicologos" method="get" class="d-flex w-100 gap-2">
+        <input type="text" name="searchString" placeholder="Buscar por nome ou e-mail..." value="@Context.Request.Query["searchString"]" class="form-control form-control-lg flex-grow-1" />
+        <button type="submit" class="btn btn-filtrar">Pesquisar</button>
+    </form>
+</div>
+
+<div class="tabela-responsiva mt-4">
+    <table class="tabela-padrao">
+        <thead class="header-verde-padrao">
+            <tr>
+                <th>Nome Completo</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Grupos Associados</th>
+                <th style="width: 120px;">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var psicologo in Model)
+                {
+                    <tr>
+                        <td>@psicologo.NomeCompleto</td>
+                        <td>@psicologo.Email</td>
+                        <td>@psicologo.Telefone</td>
+                        <td>
+                            @if (psicologo.Grupos != null && psicologo.Grupos.Any())
+                            {
+                                @string.Join(", ", psicologo.Grupos)
+                            }
+                            else
+                            {
+                                <span>Nenhum</span>
+                            }
+                        </td>
+                        <td class="acoes-em-linha">
+                            <a asp-controller="PainelAdm" asp-action="EditarPsicologo" asp-route-id="@psicologo.Id" class="btn-acao-tabela btn-editar">Editar</a>
+                            <form asp-controller="PainelAdm" asp-action="ExcluirPsicologo" asp-route-id="@psicologo.Id" method="post"
+                                  onsubmit="return confirm('Tem certeza que deseja excluir o psicólogo @Html.Raw(JavaScriptEncoder.Default.Encode(psicologo.NomeCompleto))?');">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn-acao-tabela btn-excluir">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center p-4">Nenhum psicólogo encontrado.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

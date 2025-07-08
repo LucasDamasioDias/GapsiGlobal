@@ -1,0 +1,45 @@
+﻿@model GapsiMVC.ViewModels.EnviarLinkViewModel
+@{
+    ViewData["Title"] = "Enviar Link de Reunião";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {    
+    <a asp-controller="PainelAdm" asp-action="Index" class="back-btn">← Voltar ao Painel Principal</a>
+}
+
+<p class="lead mb-4">
+    Selecione o grupo, a data da consulta e insira o link da reunião. O sistema registrará a mensagem para os pacientes com consulta confirmada.
+</p>
+
+<div class="form-section">
+    <form asp-controller="PainelAdm" asp-action="EnviarLinks" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="GrupoId" class="form-label fw-bold"></label>
+            <select asp-for="GrupoId" asp-items="Model.TodosOsGrupos" class="form-select form-select-lg">
+                <option value="">-- Selecione um Grupo --</option>
+            </select>
+            <span asp-validation-for="GrupoId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DataConsulta" class="form-label fw-bold"></label>
+            <input asp-for="DataConsulta" type="date" class="form-control form-control-lg" />
+            <span asp-validation-for="DataConsulta" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LinkReuniao" class="form-label fw-bold"></label>
+            <input asp-for="LinkReuniao" type="text" class="form-control form-control-lg" placeholder="https://meet.google.com/seu-link-aqui" />
+            <span asp-validation-for="LinkReuniao" class="text-danger"></span>
+        </div>
+
+        <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-acao-principal">Registrar e Notificar Link</button>
+        </div>
+    </form>
+</div>
+

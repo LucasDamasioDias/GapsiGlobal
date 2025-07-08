@@ -1,0 +1,95 @@
+﻿@model GapsiMVC.ViewModels.EditarUsuarioViewModel
+@{
+    ViewData["Title"] = "Alterar Meus Dados";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelAdm" asp-action="Index" class="back-btn">← Voltar ao Painel Principal</a>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <p>Por favor, corrija os erros indicados no formulário.</p>
+    </div>
+}
+
+<form asp-action="AlterarDados" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-section">
+        <h3>Meus Dados</h3>
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="row g-3">
+            <div class="col-md-8">
+                <label asp-for="NomeCompleto" class="form-label fw-bold"></label>
+                <input asp-for="NomeCompleto" class="form-control form-control-lg" />
+            </div>
+            <div class="col-md-4">
+                <label asp-for="CRP" class="form-label fw-bold"></label>
+                <input asp-for="CRP" class="form-control form-control-lg" />
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-12">
+                <label asp-for="PhoneNumber" class="form-label fw-bold"></label>
+                <input asp-for="PhoneNumber" type="tel" class="form-control form-control-lg" />
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <label asp-for="Biografia" class="form-label fw-bold"></label>
+            <textarea asp-for="Biografia" class="form-control" rows="5"></textarea>
+        </div>
+
+        <hr class="my-4" />
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Foto Atual</label>
+            <img src="@Model.FotoUrlAtual" alt="Foto atual" class="img-thumbnail d-block mb-3" style="max-width: 150px;" onerror="this.style.display='none'" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="NovaFoto" class="form-label fw-bold"></label>
+            <input asp-for="NovaFoto" type="file" class="form-control" />
+        </div>
+    </div>
+
+    <div class="d-grid mt-4">
+        <button type="submit" class="btn btn-acao-principal">Salvar Alterações</button>
+    </div>
+  </form>
+<br />
+<br />
+<form asp-controller="PainelAdm" asp-action="AlterarSenhaAdm" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-section">
+        <h3>Alterar Senha (Opcional)</h3>
+        <p>Preencha os campos abaixo apenas se desejar alterar sua senha.</p>
+        <div class="mb-3">
+            <label asp-for="SenhaAtual" class="form-label fw-bold"></label>
+            <input asp-for="SenhaAtual" type="password" class="form-control form-control-lg" />
+            <span asp-validation-for="SenhaAtual" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="NovaSenha" class="form-label fw-bold"></label>
+            <input asp-for="NovaSenha" type="password" class="form-control form-control-lg" />
+            <span asp-validation-for="NovaSenha" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ConfirmarNovaSenha" class="form-label fw-bold"></label>
+            <input asp-for="ConfirmarNovaSenha" type="password" class="form-control form-control-lg" />
+            <span asp-validation-for="ConfirmarNovaSenha" class="text-danger"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-acao-principal">Alterar Senha</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,28 @@
+﻿@model GapsiMVC.ViewModels.RedefinirSenhaViewModel
+@{
+    ViewData["Title"] = "Redefinir Senha";    
+}
+<!DOCTYPE html>
+    <div class="auth-container">
+        <h2>@ViewData["Title"]</h2>
+        <hr />
+        <div asp-validation-summary="All" class="text-danger mb-3"></div> 
+       
+        <form asp-controller="RecuperacaoSenha" asp-action="RedefinirSenha" method="post">            
+            @Html.AntiForgeryToken() 
+            <input asp-for="Token" type="hidden" />
+            <input asp-for="Email" type="hidden" />
+
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span> 
+            </div>
+            <button type="submit" class="search-btn btn btn-primary">Redefinir Senha</button>
+        </form>
+    </div>

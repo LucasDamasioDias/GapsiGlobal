@@ -1,0 +1,65 @@
+﻿@model EnvioComprovanteViewModel
+@{
+    ViewData["Title"] = "Realizar Pagamento e Enviar Comprovante";   
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelPaciente" asp-action="Index" class="back-btn">← Voltar ao Meu Painel</a>
+}
+
+<div class="row">   
+    <div class="col-md-6">
+        <h4>Instruções de Pagamento</h4>
+        <p>Realize o pagamento da sua consulta utilizando a chave PIX abaixo:</p>
+        <div class="text-center mb-3">
+            <img src="~/assets/icons/pix.jpeg" alt="QR Code PIX" class="img-fluid" style="max-width: 250px;" />
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Tipo de Chave:</strong> CNPJ</li>
+            <li class="list-group-item"><strong>Chave PIX:</strong> 57.507.780/0001-88</li>
+            <li class="list-group-item"><strong>Favorecido:</strong> Gapsi Global Ltda.</li>
+        </ul>
+        <p class="mt-3">Após realizar o pagamento, preencha o formulário ao lado e anexe o comprovante.</p>
+        <div class="alert alert-info mt-4">
+            <strong>Pagamento Parcelado:</strong> Caso deseje realizar o pagamento parcelado via cartão de crédito, por favor,
+            <a asp-controller="Contato" asp-action="Index" class="alert-link">entre em contato conosco</a>
+            antes de prosseguir.
+        </div>
+    </div>
+
+   
+    <div class="col-md-6">
+        <h4>Enviar Comprovante</h4>
+        <form asp-action="Pagamentos" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label asp-for="GrupoId" class="form-label fw-bold"></label>
+                <select asp-for="GrupoId" asp-items="Model.GruposDoPaciente" class="form-select">
+                    <option value="">-- Selecione o Grupo --</option>
+                </select>
+                <span asp-validation-for="GrupoId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="DataConsulta" class="form-label fw-bold"></label>
+                <input asp-for="DataConsulta" class="form-control" />
+                <span asp-validation-for="DataConsulta" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ArquivoComprovante" class="form-label fw-bold"></label>
+                <input asp-for="ArquivoComprovante" type="file" class="form-control" accept="image/png, image/jpeg, application/pdf" />
+                <span asp-validation-for="ArquivoComprovante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-acao-principal">Enviar Comprovante</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,76 @@
+﻿@model GapsiMVC.ViewModels.MinhasConsultasViewModel
+@{
+    ViewData["Title"] = "Minhas Consultas";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelPaciente" asp-action="Index" class="back-btn">← Voltar ao Meu Painel</a>
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">  
+    <p class="lead mb-0">
+        Acompanhe suas consultas agendadas e seu histórico.
+    </p>
+    <a asp-controller="Agendamento" asp-action="Index" class="btn btn-acao-principal" style="width: auto;">Agendar Nova Consulta</a>
+</div>
+
+
+<section class="consultas-secao">
+    <h3>Próximas Consultas</h3>
+    @if (Model.ConsultasAgendadas.Any())
+    {
+        @foreach (var consulta in Model.ConsultasAgendadas)
+        {
+            <div class="consulta-item">
+                <h4>Grupo: @consulta.NomeGrupo</h4>
+                <div class="consulta-info">
+                    <p><strong>Data e Hora:</strong> @consulta.DataHoraFormatada</p>
+                    <p>
+                        <strong>Status:</strong>                       
+                        <span class="consulta-status consulta-status-@consulta.Status.Replace(" ", "")">
+                            @consulta.Status
+                        </span>
+                    </p>
+                </div>
+                @if (consulta.PodeCancelarPeloPaciente)
+                {
+                    <form asp-controller="Agendamento" asp-action="CancelarConsulta" asp-route-id="@consulta.Id" method="post" onsubmit="return confirm('Tem certeza que deseja cancelar esta consulta?');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn-cancelar">Cancelar Consulta</button>
+                    </form>
+                }
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-info">Você não possui consultas agendadas no momento.</div>
+    }
+</section>
+
+<section class="consultas-secao">
+    <h3>Histórico de Consultas</h3>
+    @if (Model.ConsultasPassadasOuCanceladas.Any())
+    {
+        @foreach (var consulta in Model.ConsultasPassadasOuCanceladas)
+        {
+            <div class="consulta-item">
+                <h4>Grupo: @consulta.NomeGrupo</h4>
+                <div class="consulta-info">
+                    <p><strong>Data e Hora:</strong> @consulta.DataHoraFormatada</p>
+                    <p>
+                        <strong>Status:</strong>
+                        <span class="consulta-status consulta-status-@consulta.Status.Replace(" ", "")">
+                            @consulta.Status
+                        </span>
+                    </p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-secondary">Não há histórico de consultas.</div>
+    }
+</section>

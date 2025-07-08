@@ -1,0 +1,53 @@
+﻿@model GapsiMVC.ViewModels.AdminEnviarMensagemPsicologosViewModel
+@{
+    ViewData["Title"] = "Enviar Mensagem para Psicólogos";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelAdm" asp-action="Index" class="back-btn">← Voltar ao Painel Principal</a>
+}
+
+<p class="lead mb-4">
+    Envie um comunicado para psicólogos específicos ou para todos de uma só vez.
+</p>
+
+<div class="form-section">
+    <form asp-controller="PainelAdm" asp-action="EnviarMensagensPsicologos" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+
+        <div class="form-check form-switch">
+            <input asp-for="EnviarParaTodosOsPsicologos" class="form-check-input" type="checkbox" role="switch" id="enviarParaTodos" />
+            <label class="form-check-label" for="enviarParaTodos">Enviar para TODOS os Psicólogos</label>
+        </div>
+
+        <div class="mb-3" id="selecaoPsicologosDiv">
+            <label asp-for="DestinatariosPsicologosIds" class="form-label fw-bold">Psicólogos de Destino</label>
+            <select asp-for="DestinatariosPsicologosIds" asp-items="Model.TodosOsPsicologosParaSelecao" class="form-select form-select-multiple" multiple="multiple">
+            </select>
+            <span asp-validation-for="DestinatariosPsicologosIds" class="text-danger"></span>
+            <small class="form-text-ajuda">Visível apenas se "Enviar para TODOS" não estiver marcado. Segure 'Ctrl' para selecionar múltiplos.</small>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Conteudo" class="form-label fw-bold">Mensagem</label>
+            <textarea asp-for="Conteudo" class="form-control" rows="6" placeholder="Digite sua mensagem aqui..."></textarea>
+            <span asp-validation-for="Conteudo" class="text-danger"></span>
+        </div>
+
+        <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-acao-principal">Enviar Mensagem</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/painel-scripts.js" asp-append-version="true"></script>
+    <script>       
+        document.addEventListener('DOMContentLoaded', function () {            
+            setupToggleVisibility('enviarParaTodos', 'selecaoPsicologosDiv');
+        });
+    </script>
+}

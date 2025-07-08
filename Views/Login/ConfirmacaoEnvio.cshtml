@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Confirmação de Envio";    
+}
+    <div class="auth-container">
+        <h2>@ViewData["Title"]</h2>
+        <p>
+            Se existir uma conta associada ao e-mail fornecido, um link para redefinir sua senha foi enviado.
+            Por favor, verifique sua caixa de entrada (e spam).
+        </p>
+        <a asp-controller="Login" asp-action="Index">Voltar para o Login</a>
+    </div>

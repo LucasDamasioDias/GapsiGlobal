@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Damasio\\Desktop\\GapsiMVC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B8F61C7D-DAF4-4B96-A155-D2C6A87F9F71}|GapsiMVC.csproj|c:\\users\\damasio\\desktop\\gapsimvc\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{B8F61C7D-DAF4-4B96-A155-D2C6A87F9F71}|GapsiMVC.csproj|solutionrelative:wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8F61C7D-DAF4-4B96-A155-D2C6A87F9F71}|GapsiMVC.csproj|c:\\users\\damasio\\desktop\\gapsimvc\\wwwroot\\js\\acessibilidade_script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B8F61C7D-DAF4-4B96-A155-D2C6A87F9F71}|GapsiMVC.csproj|solutionrelative:wwwroot\\js\\acessibilidade_script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "acessibilidade_script.js",
+              "DocumentMoniker": "C:\\Users\\Damasio\\Desktop\\GapsiMVC\\wwwroot\\js\\acessibilidade_script.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\acessibilidade_script.js",
+              "ToolTip": "C:\\Users\\Damasio\\Desktop\\GapsiMVC\\wwwroot\\js\\acessibilidade_script.js",
+              "RelativeToolTip": "wwwroot\\js\\acessibilidade_script.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-07-06T19:38:44.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "style.css",
+              "DocumentMoniker": "C:\\Users\\Damasio\\Desktop\\GapsiMVC\\wwwroot\\css\\style.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\style.css",
+              "ToolTip": "C:\\Users\\Damasio\\Desktop\\GapsiMVC\\wwwroot\\css\\style.css",
+              "RelativeToolTip": "wwwroot\\css\\style.css",
+              "ViewState": "AgIAABADAAAAAAAAAAAIwIwEAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-07-06T18:30:25.642Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

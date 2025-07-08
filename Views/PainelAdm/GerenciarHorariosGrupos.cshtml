@@ -1,0 +1,95 @@
+﻿@model GapsiMVC.ViewModels.AdminGerenciarHorariosViewModel
+@{
+    ViewData["Title"] = "Gerenciar Horários dos Grupos";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelAdm" asp-action="Index" class="back-btn">← Voltar ao Painel Principal</a>
+}
+
+<div class="form-section mb-5">
+    <h3>Adicionar Novo Horário</h3>
+    <form asp-controller="PainelAdm" asp-action="AdicionarHorario" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label asp-for="FormularioAdicionar.GrupoId" class="form-label fw-bold"></label>
+                <select asp-for="FormularioAdicionar.GrupoId" asp-items="Model.FormularioAdicionar.GruposDisponiveis" class="form-select form-select-lg">
+                    <option value="">-- Selecione um Grupo --</option>
+                </select>
+                <span asp-validation-for="FormularioAdicionar.GrupoId" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="FormularioAdicionar.DiaDaSemana" class="form-label fw-bold"></label>
+                <select asp-for="FormularioAdicionar.DiaDaSemana" asp-items="Model.FormularioAdicionar.DiasDaSemana" class="form-select form-select-lg">
+                    <option value="">-- Selecione um Dia --</option>
+                </select>
+                <span asp-validation-for="FormularioAdicionar.DiaDaSemana" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="FormularioAdicionar.Hora" class="form-label fw-bold"></label>
+                <input asp-for="FormularioAdicionar.Hora" type="time" class="form-control form-control-lg" min="08:00" max="20:00" step="1800" />
+                <span asp-validation-for="FormularioAdicionar.Hora" class="text-danger"></span>
+            </div>
+        </div>
+
+        <input type="hidden" asp-for="FiltroGrupoId" />
+        <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-acao-principal">Adicionar Horário</button>
+        </div>
+    </form>
+</div>
+
+<section class="tabela-horarios-container">
+    <h3>Horários Cadastrados</h3>
+
+    <form asp-controller="PainelAdm" asp-action="GerenciarHorariosGrupos" method="get" class="filtro-container-simples">
+        <label for="filtroGrupoId" class="fw-bold">Filtrar por Grupo:</label>
+        <select name="filtroGrupoId" asp-for="FiltroGrupoId" asp-items="Model.GruposParaFiltro" class="form-select" onchange="this.form.submit();">
+            <option value="">Todos os Grupos</option>
+        </select>
+    </form>
+
+    <div class="tabela-responsiva mt-3">
+        <table class="tabela-padrao">
+            <thead class="header-verde-padrao">
+                <tr>
+                    <th>Grupo</th>
+                    <th>Dia da Semana</th>
+                    <th>Hora</th>
+                    <th style="width: 120px;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.HorariosCadastrados.Any())
+                {
+                    @foreach (var horario in Model.HorariosCadastrados)
+                    {
+                        <tr>
+                            <td>@horario.NomeGrupo</td>
+                            <td>@horario.DiaDaSemanaFormatado</td>
+                            <td>@horario.HoraFormatada</td>
+                            <td>
+                                <form asp-controller="PainelAdm" asp-action="ExcluirHorario" asp-route-id="@horario.Id" method="post"
+                                      onsubmit="return confirm('Tem certeza que deseja excluir este horário?');">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="filtroGrupoIdAtual" value="@Model.FiltroGrupoId" />
+                                    <button type="submit" class="btn btn-excluir">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center">Nenhum horário cadastrado para o filtro selecionado.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

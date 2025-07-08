@@ -1,0 +1,33 @@
+﻿@using System.Globalization;
+@model InvestimentoViewModel
+@{
+    ViewData["Title"] = "Gapsiglobal - Investimento";
+}
+
+        <section id="introducao">
+            <h2>Investimentos e Formas de Pagamento</h2>
+            <p>Na GApsi Global, oferecemos um atendimento de qualidade, com acessibilidade e facilidade nas formas de pagamento...</p>
+        </section>
+
+        <section id="investimento-sessoes">
+            <h3>Investimento das Sessões</h3>
+    <p>O investimento para cada sessão em grupo é de <strong>@Model.ValorConsulta.ToString("C", new CultureInfo("pt-BR"))</strong>.. As sessões são semanais...</p>
+        </section>
+
+        <section id="formas-pagamento">
+            <h3>Formas de Pagamento</h3>
+            <p>Para garantir maior comodidade, oferecemos diversas opções de pagamento:</p>
+            <ul>
+                <li><strong>Pix:</strong> Um método rápido e prático.</li>                
+                <li><strong>Cartão de Crédito:</strong> Pagamento facilitado.</li>
+            </ul>
+            <p>Você pode escolher a forma de pagamento que melhor se adapta às suas necessidades.</p>
+        </section>
+
+        <section id="duvidas">
+            <h3>Dúvidas?</h3>
+            <p>Se tiver alguma dúvida sobre os grupos ou o processo de pagamento, entre em <a asp-controller="Contato" asp-action="Index">contato</a>.</p>
+        </section>
+
+
+

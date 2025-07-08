@@ -1,0 +1,54 @@
+﻿@model GapsiMVC.ViewModels.PacienteVisualizarMensagensViewModel
+@{
+    ViewData["Title"] = "Minhas Mensagens e Links";
+    Layout = "~/Views/Shared/_Layout_Gerenciamento.cshtml";
+}
+
+@section BotaoVoltar {
+    <a asp-controller="PainelPaciente" asp-action="Index" class="back-btn">← Voltar ao Meu Painel</a>
+}
+
+@if (Model.Mensagens.Any())
+{
+    foreach (var msg in Model.Mensagens)
+    {              
+        <div class="mensagem-item">
+            <div class="mensagem-header">
+                <div class="mensagem-info">
+                    <strong>De:</strong>
+                    <span>@msg.EnviadoPorNome</span>
+                </div>
+                <div class="mensagem-info" style="text-align:center;">
+                    <strong>Para o Grupo:</strong>
+                    <span>@msg.NomeGrupo</span>
+                </div>
+                <div class="mensagem-data">
+                    <span>@msg.DataEnvioFormatada</span>
+                </div>
+            </div>
+            <div class="mensagem-conteudo">
+                @{ 
+                    string conteudo = msg.Conteudo;
+                    var urlRegex = new System.Text.RegularExpressions.Regex(
+                    @"(http[s]?:\/\/[^\s""<>]+)",
+                    System.Text.RegularExpressions.RegexOptions.IgnoreCase
+                    );
+
+                    var conteudoHtml = Html.Raw(
+                    urlRegex.Replace(
+                    System.Net.WebUtility.HtmlEncode(conteudo), 
+                    "<a href=\"$1\" target=\"_blank\">$1</a>"
+                    ).Replace(Environment.NewLine, "<br />")
+                    );
+                }
+                @conteudoHtml
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="sem-mensagens">
+        <p class="lead">Você não possui mensagens ou links de reunião no momento.</p>
+    </div>
+}
