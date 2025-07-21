@@ -434,6 +434,49 @@ form {
         font-weight: bold;
         color: #333333;
     }
+  
+    #login-form .form-group {       
+        margin-bottom: 1rem;
+    }
+
+    #login-form .form-control { 
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #CCCCCC;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    #login-form .btn-login { 
+        background-color: #2B7A7C;
+        color: #FFFFFF;
+        border: none;
+        padding: 12px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+        #login-form .btn-login:hover {
+            background-color: #1E6263;
+        }
+
+.form-check-login {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; 
+    margin-bottom: 1rem; 
+    font-size: 0.9rem;
+    color: #555;
+}
+
+    .form-check-login input[type="checkbox"] {
+        width: 1rem;
+        height: 1rem;
+    }
 
     #login-form input[type="email"],
     #login-form input[type="password"] {
