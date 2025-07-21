@@ -5069,11 +5069,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Damasio\\Desktop\\GapsiMVC\\GapsiMVC.csproj",
+      "projectUniqueName": "C:\\Users\\Damasio\\Desktop\\Nova pasta\\GapsiGlobal\\GapsiMVC.csproj",
       "projectName": "GapsiMVC",
-      "projectPath": "C:\\Users\\Damasio\\Desktop\\GapsiMVC\\GapsiMVC.csproj",
+      "projectPath": "C:\\Users\\Damasio\\Desktop\\Nova pasta\\GapsiGlobal\\GapsiMVC.csproj",
       "packagesPath": "C:\\Users\\Damasio\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Damasio\\Desktop\\GapsiMVC\\obj\\",
+      "outputPath": "C:\\Users\\Damasio\\Desktop\\Nova pasta\\GapsiGlobal\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5107,7 +5107,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -5183,7 +5183,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.103/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

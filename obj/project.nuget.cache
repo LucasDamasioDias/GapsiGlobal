@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6ZmbmKqdH4s=",
+  "dgSpecHash": "0J4fc6YYlfc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Damasio\\Desktop\\GapsiMVC\\GapsiMVC.csproj",
+  "projectFilePath": "C:\\Users\\Damasio\\Desktop\\Nova pasta\\GapsiGlobal\\GapsiMVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Damasio\\.nuget\\packages\\awssdk.core\\4.0.0.13\\awssdk.core.4.0.0.13.nupkg.sha512",
     "C:\\Users\\Damasio\\.nuget\\packages\\awssdk.extensions.netcore.setup\\4.0.2\\awssdk.extensions.netcore.setup.4.0.2.nupkg.sha512",

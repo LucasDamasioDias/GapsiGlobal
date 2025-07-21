@@ -1,28 +1,63 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const menu = document.querySelector('.menu');
     const overlay = document.querySelector('.menu-overlay');
-    const logo = document.getElementById('logo-mobile');
-    const welcome = document.querySelector('.welcome');
-    const appRoot = document.getElementById('appRoot');
+    const body = document.body;
 
-    menuToggle.addEventListener('click', () => {
-        const isMenuOpen = menu.classList.toggle('menu-mobile');
-        appRoot.classList.toggle('menu-open');
-        
+    if (!menuToggle || !menu || !overlay) {
+        return;
+    }
 
-        if (isMenuOpen) {
-            overlay.classList.add('menu-overlay');
-            overlay.style.display = 'block';
-            logo.style.display = 'block';
-            welcome.style.opacity = '0'; 
-            welcome.style.pointerEvents = 'none';
+    function isMobileView() {
+        return window.innerWidth <= 1023;
+    }
+
+    function abrirMenu() {        
+        if (!isMobileView()) return;
+
+        menu.classList.add('menu-mobile');
+        overlay.style.display = 'block';
+        body.classList.add('menu-open');
+        menuToggle.setAttribute('aria-expanded', 'true');
+    }
+
+    function fecharMenu() {        
+        if (!isMobileView()) return;
+
+        menu.classList.remove('menu-mobile');
+        overlay.style.display = 'none';
+        body.classList.remove('menu-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function isHomePage() {
+        return window.location.pathname === '/' ||
+            window.location.pathname.toLowerCase().startsWith('/home');
+    }
+
+    if (isHomePage() && isMobileView()) {
+        abrirMenu();
+    }
+
+    menuToggle.addEventListener('click', () => {       
+        if (menu.classList.contains('menu-mobile')) {
+            fecharMenu();
         } else {
-            overlay.classList.remove('menu-overlay'); 
-            overlay.style.display = 'none';
-            logo.style.display = 'none';
-            welcome.style.opacity = '1'; 
-            welcome.style.pointerEvents = 'auto'; 
+            abrirMenu();
+        }
+    });
+
+    const menuLinks = menu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {            
+            fecharMenu();
+        });
+    });
+
+    window.addEventListener('resize', () => {       
+        if (!isMobileView() && menu.classList.contains('menu-mobile')) {
+            fecharMenu();
         }
     });
 });

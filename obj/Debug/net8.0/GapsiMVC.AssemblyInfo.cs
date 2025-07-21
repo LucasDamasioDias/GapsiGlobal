@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GapsiMVC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f073073297c4f9b2d6992bb94ed13d7fae79cf07")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30f7aeb092b76e6c12b5d0f628a323389f7898c1")]
 [assembly: System.Reflection.AssemblyProductAttribute("GapsiMVC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GapsiMVC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
