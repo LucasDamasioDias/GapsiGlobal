@@ -1,28 +1,43 @@
 ﻿@model GapsiGlobal.Models.LoginModel
-
 @{
     ViewData["Title"] = "Gapsiglobal - Login";
 }
-        <section id="login-form">
-            <h2>Faça seu Login</h2>             
 
-            <form method="post" asp-controller="Login" asp-action="Login" id="loginForm">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required>
+<section id="login-form">
+    <h2>Faça seu Login</h2>
 
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required>
+    <form method="post" asp-controller="Login" asp-action="Login" id="loginForm">
+        @Html.AntiForgeryToken() 
 
-                <button type="submit" value="Entrar">Entrar</button>
-                @if (!string.IsNullOrEmpty(ViewBag.Mensagem))
-                {
-                    <div class="alert alert-danger">@ViewBag.Mensagem</div>
-                }
-                <p>
-                    Ainda não tem uma conta? <a asp-controller="Cadastro" asp-action="Index">Registre-se aqui</a> ou
-            <a asp-controller="RecuperacaoSenha" asp-action="EsqueciMinhaSenha">clique aqui</a> se esqueceu a senha.
-                </p>
-            </form>
+        <div class="form-group">
+            <label asp-for="Email">E-mail:</label>
+            <input asp-for="Email" type="email" class="form-control" required>
+        </div>
 
-        </section>
-    
+        <div class="form-group">
+            <label asp-for="Senha">Senha:</label>
+            <input asp-for="Senha" type="password" class="form-control" required>
+        </div>
+
+        <div class="form-check-login">
+            <input type="checkbox" id="mostrarSenhaCheckbox">
+            <label for="mostrarSenhaCheckbox">Mostrar Senha</label>
+        </div>
+
+        <button type="submit" class="btn-login">Entrar</button>
+
+        @if (!string.IsNullOrEmpty(ViewBag.Mensagem))
+        {
+            <div class="alert alert-danger mt-3">@ViewBag.Mensagem</div>
+        }
+
+        <p class="mt-3">
+            Ainda não tem uma conta? <a asp-controller="Cadastro" asp-action="Index">Clique aqui para se cadastrar</a> ou 
+            <a asp-controller="RecuperacaoSenha" asp-action="EsqueciMinhaSenha">clique aqui se esqueceu a senha.</a>
+        </p>
+    </form>
+</section>
+
+
+    <script src="/js/login_script.js"></script>
+
