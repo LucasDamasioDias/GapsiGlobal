@@ -12,24 +12,24 @@ body {
 video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Manter a proporção do vídeo */
-    position: absolute; /* Permite que o vídeo ocupe toda a área */
-    top: 0; /* Posiciona no topo */
-    left: 0; /* Posiciona à esquerda */
-    z-index: -1; /* Coloca o vídeo atrás de outros conteúdos */
+    object-fit: cover;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    z-index: -1;
     margin: 0;
 }
 
 .welcome {
-    font-family: "Qwitcher Grypen", cursive; /* Fonte personalizada */
-    font-weight: 700; /* Peso da fonte */
-    font-style: normal; /* Estilo normal */
-    color: #ffffff; /* Cor da fonte - branco */
-    text-align: center; /* Centraliza o texto horizontalmente */
-    position: relative; /* Posiciona no fluxo do layout */
-    z-index: 1; /* Coloca a mensagem acima do vídeo */
-    margin: 100px 0; /* Adiciona um espaço superior e inferior (opcional) */
-    font-size: 9em; /* Tamanho da fonte - ajuste conforme desejado */
+    font-family: "Qwitcher Grypen", cursive;
+    font-weight: 700;
+    font-style: normal; 
+    color: #ffffff;
+    text-align: center; 
+    position: relative; 
+    z-index: 1; 
+    margin: 100px 0; 
+    font-size: 9em; 
 }
 
 h1, h2, h3 {
